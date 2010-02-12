@@ -173,6 +173,7 @@ struct NetworkSettings {
 	uint8  autoclean_unprotected;                         ///< remove passwordless companies after this many months
 	uint8  autoclean_protected;                           ///< remove the password from passworded companies after this many months
 	uint8  autoclean_novehicles;                          ///< remove companies with no vehicles after this many months
+	uint8  restart_iddle_months;                          ///< automaticaly restart game after x iddle months (no companies exist)
 	uint8  max_companies;                                 ///< maximum amount of companies
 	uint8  max_clients;                                   ///< maximum amount of clients
 	uint8  max_spectators;                                ///< maximum amount of spectators

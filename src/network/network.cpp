@@ -43,6 +43,7 @@
 /** When running the server till the wait point, run as fast as we can! */
 bool _ddc_fastforward = true;
 #endif /* DEBUG_DUMP_COMMANDS */
+#include "../genworld.h"
 
 #include "../sai/sai.hpp"
 assert_compile(NetworkClientInfoPool::MAX_SIZE == NetworkClientSocketPool::MAX_SIZE);
@@ -845,6 +846,7 @@ void NetworkUDPGameLoop()
 
 uint32 _frame_week_fract;
 uint32 _frame_date_fract;
+uint32 _frame_clients_seen;
 
 void NetworkServer_CheckTick()
 {
@@ -866,6 +868,29 @@ void NetworkServer_CheckTick()
 				SAI::InvokeCallback("OnPausedWeeklyLoop");
 			}
 		}
+
+        // check for restart every day
+		if (_network_clients_connected == 0 && _settings_client.network.restart_iddle_months > 0)
+        {
+            // handle game restarts
+            if (_frame_clients_seen > _frame_counter)
+                _frame_clients_seen = _frame_counter;
+
+            iddle_days = (_frame_counter - _frame_clients_seen) / DAY_TICKS;
+
+            if (iddle_days > (uint32)_settings_client.network.restart_iddle_months * 31)
+            {
+                _frame_clients_seen = 0;
+
+                // restart game, iddle count reached
+                DEBUG(net, 0, "Auto-restarting map. Iddle months %d reached", _settings_client.network.restart_iddle_months);
+                StartNewGameWithoutGUI(GENERATE_NEW_SEED);
+            }
+        }
+        else
+        {
+            _frame_clients_seen = _frame_counter;
+        }
 	}
 }
 
