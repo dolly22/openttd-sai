@@ -134,6 +134,9 @@ extern uint16 _network_udp_broadcast;
 
 extern uint8 _network_advertise_retries;
 
+extern uint16 _network_advertise_curr_port;
+extern uint16 _network_advertise_last_port;
+
 extern CompanyMask _network_company_passworded;
 
 void NetworkTCPQueryServer(NetworkAddress address);

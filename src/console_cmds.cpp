@@ -643,6 +643,29 @@ DEF_CONSOLE_CMD(ConUnPauseGame)
 	return true;
 }
 
+void NetworkUDPRemoveAdvertise(bool blocking);
+extern uint16 _network_advertise_last_port;
+
+DEF_CONSOLE_CMD(ConRemoveAdvertise)
+{
+	if (argc == 0) {
+		IConsoleHelp("Remove advertisement for specific port at master server. Usage: 'remove_advertise port'");
+		return true;
+	}
+
+	if (argc < 2) return false;
+
+	uint16 port = (uint16)atoi(argv[1]);
+
+	if (port > 0) {
+		_network_advertise_last_port = port;
+		NetworkUDPRemoveAdvertise(false);
+	} else {
+		IConsolePrint(CC_ERROR, "Invalid port number.");
+	}
+	return true;
+}
+
 DEF_CONSOLE_CMD(ConRcon)
 {
 	if (argc == 0) {
@@ -1960,6 +1983,8 @@ void IConsoleStdLibRegister()
 
 	IConsoleCmdRegister("company_pw",      ConCompanyPassword, ConHookNeedNetwork);
 	IConsoleAliasRegister("company_password",      "company_pw %+");
+
+	IConsoleCmdRegister("remove_advertise",         ConRemoveAdvertise, ConHookServerOnly);
 
 	IConsoleAliasRegister("net_frame_freq",        "setting frame_freq %+");
 	IConsoleAliasRegister("net_sync_freq",         "setting sync_freq %+");

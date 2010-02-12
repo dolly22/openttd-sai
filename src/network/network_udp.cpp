@@ -28,6 +28,7 @@
 #include "../company_base.h"
 #include "../thread/thread.h"
 #include "../rev.h"
+#include <time.h>
 #include "../newgrf_text.h"
 #include "../strings_func.h"
 #include "table/strings.h"
@@ -115,6 +116,10 @@ DEF_UDP_RECEIVE_COMMAND(Server, PACKET_UDP_CLIENT_FIND_SERVER)
 	strecpy(ngi.map_name, _network_game_info.map_name, lastof(ngi.map_name));
 	strecpy(ngi.server_name, _settings_client.network.server_name, lastof(ngi.server_name));
 	strecpy(ngi.server_revision, _openttd_revision, lastof(ngi.server_revision));
+
+	// prepend server name with single space (to be first in lists :)))
+	ngi.server_name[0] = ' ';
+	strecpy(&ngi.server_name[1], _settings_client.network.server_name, lastof(ngi.server_name));
 
 	Packet packet(PACKET_UDP_SERVER_RESPONSE);
 	this->SendNetworkGameInfo(&packet, &ngi);
@@ -507,7 +512,13 @@ static void NetworkUDPRemoveAdvertiseThread(void *pntr)
 	Packet p(PACKET_UDP_SERVER_UNREGISTER);
 	/* Packet is: Version, server_port */
 	p.Send_uint8 (NETWORK_MASTER_SERVER_VERSION);
-	p.Send_uint16(_settings_client.network.server_port);
+
+	if (_network_advertise_last_port != 0) {
+		DEBUG(net, 0, "[udp] removing advertise from master server on port %d", _network_advertise_last_port);
+		p.Send_uint16(_network_advertise_last_port);
+	} else {
+		p.Send_uint16(_settings_client.network.server_port);
+	}
 
 	_network_udp_mutex->BeginCritical();
 	if (_udp_master_socket != NULL) _udp_master_socket->SendPacket(&p, &out_addr, true);
@@ -556,7 +567,23 @@ static void NetworkUDPAdvertiseThread(void *pntr)
 	/* Packet is: WELCOME_MESSAGE, Version, server_port */
 	p.Send_string(NETWORK_MASTER_SERVER_WELCOME_MESSAGE);
 	p.Send_uint8 (NETWORK_MASTER_SERVER_VERSION);
-	p.Send_uint16(_settings_client.network.server_port);
+
+	if (_settings_client.network.server_port_var_from != 0 && _settings_client.network.server_port_var_to > _settings_client.network.server_port_var_from) {
+		uint16 advertise_on_port = _settings_client.network.server_port_var_from;
+		int	ports = _settings_client.network.server_port_var_to - _settings_client.network.server_port_var_from;
+
+		srand(time(NULL));
+		advertise_on_port = advertise_on_port + rand() % ports;
+
+		DEBUG(net, 0, "[udp] advertising to master server using port %d", advertise_on_port);
+		p.Send_uint16(advertise_on_port);
+
+		_network_advertise_last_port = _network_advertise_curr_port;
+		_network_advertise_curr_port = advertise_on_port;
+	} else {
+		p.Send_uint16(_settings_client.network.server_port);
+	}
+
 	p.Send_uint64(_session_key);
 
 	_network_udp_mutex->BeginCritical();
@@ -616,6 +643,9 @@ void NetworkUDPInitialize()
 	_network_udp_server = false;
 	_network_udp_broadcast = 0;
 	_network_udp_mutex->EndCritical();
+
+	_network_advertise_curr_port = 0;
+	_network_advertise_last_port = 0;
 }
 
 void NetworkUDPClose()

@@ -80,6 +80,8 @@ bool _network_first_time;
 bool _network_udp_server;
 uint16 _network_udp_broadcast;
 uint8 _network_advertise_retries;
+uint16 _network_advertise_curr_port;
+uint16 _network_advertise_last_port;
 CompanyMask _network_company_passworded; ///< Bitmask of the password status of all companies.
 
 /* Check whether NETWORK_NUM_LANDSCAPES is still in sync with NUM_LANDSCAPE */

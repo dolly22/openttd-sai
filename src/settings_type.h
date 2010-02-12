@@ -157,6 +157,8 @@ struct NetworkSettings {
 	uint16 max_join_time;                                 ///< maximum amount of time, in game ticks, a client may take to join
 	bool   pause_on_join;                                 ///< pause the game when people join
 	uint16 server_port;                                   ///< port the server listens on
+	uint16 server_port_var_from;                          ///< variate port number to advertise from this port..
+	uint16 server_port_var_to;							  ///< variate port number to advertise to this port..
 	uint16 server_admin_port;                             ///< port the server listens on for the admin network
 	bool   server_admin_chat;                             ///< allow private chat for the server to be distributed to the admin network
 	char   server_name[NETWORK_NAME_LENGTH];              ///< name of the server

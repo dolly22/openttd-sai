@@ -647,6 +647,8 @@ const SettingDesc _settings[] = {
 	  SDTC_VAR(network.max_join_time,        SLE_UINT16, S, NO,   500,        0,    32000, 0, STR_NULL,                                       NULL),
 	 SDTC_BOOL(network.pause_on_join,                    S, NO,  true,                        STR_NULL,                                       NULL),
 	  SDTC_VAR(network.server_port,          SLE_UINT16, S, NO,NETWORK_DEFAULT_PORT,0,65535,0,STR_NULL,                                       NULL),
+	  SDTC_VAR(network.server_port_var_from, SLE_UINT16, S, NO,0,0,65535,0,					  STR_NULL,                                       NULL),
+	  SDTC_VAR(network.server_port_var_to,	 SLE_UINT16, S, NO,0,0,65535,0,					  STR_NULL,                                       NULL),
 	  SDTC_VAR(network.server_admin_port,    SLE_UINT16, S, NO,  NETWORK_ADMIN_PORT,0,65535,0,STR_NULL,                                       NULL),
 	 SDTC_BOOL(network.server_admin_chat,                S, NO,  true,                        STR_NULL,                                       NULL),
 	 SDTC_BOOL(network.server_advertise,                 S, NO, false,                        STR_NULL,                                       NULL),
