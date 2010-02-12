@@ -98,6 +98,10 @@ void CDECL usererror(const char *s, ...)
 	vsnprintf(buf, lengthof(buf), s, va);
 	va_end(va);
 
+#if !defined(_DEBUG)
+	// do not show windows for dedicated server, so it can restart it's process automaticaly...
+	if (!_network_dedicated)
+#endif	
 	ShowOSErrorBox(buf, false);
 	if (_video_driver != NULL) _video_driver->Stop();
 
@@ -118,6 +122,10 @@ void CDECL error(const char *s, ...)
 	vsnprintf(buf, lengthof(buf), s, va);
 	va_end(va);
 
+#if !defined(_DEBUG)
+	// do not show windows for dedicated server, so it can restart it's process automaticaly...
+	if (!_network_dedicated)
+#endif	
 	ShowOSErrorBox(buf, true);
 
 	/* Set the error message for the crash log and then invoke it. */
