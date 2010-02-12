@@ -82,6 +82,7 @@ struct CompanyProperties {
 	bool is_ai;
 	bool is_suspended;		// are company actions currently suspended?
 	bool is_protected;		// is company protected from autoclean?
+	bool is_server;			// is company server controlled?
 
 	// SA universal company storage...
 	uint32 sa_storage[SAI_COMPANY_STORAGE_SIZE];

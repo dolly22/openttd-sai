@@ -33,6 +33,7 @@ void SQSAICompany_Register(Squirrel *engine)
 	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_INVALID,         "COMPANY_INVALID");
 	SQSAICompany.DefSQConst(engine, SAICompany::OWNER_TOWN,              "OWNER_TOWN");
 	SQSAICompany.DefSQConst(engine, SAICompany::OWNER_NONE,              "OWNER_NONE");
+	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_SERVER,          "COMPANY_SERVER");
 	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_INACTIVE_CLIENT, "COMPANY_INACTIVE_CLIENT");
 	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_NEW_COMPANY,     "COMPANY_NEW_COMPANY");
 	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_SPECTATOR,       "COMPANY_SPECTATOR");
@@ -57,6 +58,7 @@ void SQSAICompany_Register(Squirrel *engine)
 	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetStorage,            "GetStorage",            3, ".ii");
 	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::IsProtected,           "IsProtected",           2, ".i");
 	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::SetProtected,          "SetProtected",          3, ".ib");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::IsServer,              "IsServer",              2, ".i");
 	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetHQSize,             "GetHQSize",             2, ".i");
 
 	SQSAICompany.PostRegister(engine);

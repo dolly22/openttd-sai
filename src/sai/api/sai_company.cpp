@@ -201,6 +201,14 @@
 	::Company::Get(company)->is_protected = prot;
 }
 
+/* static */ bool SAICompany::IsServer(CompanyID company)
+{
+	if (!IsValid(company))
+		return false;
+
+	return ::Company::Get(company)->is_server;
+}
+
 /* static */ uint32 SAICompany::GetHQSize(CompanyID company) {
 	if (!IsValid(company))
 		return 0;

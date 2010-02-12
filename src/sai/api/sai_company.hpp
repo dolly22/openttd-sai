@@ -19,6 +19,7 @@ public:
 		OWNER_NONE				= 0x10,
 
 		/* fake companies */
+		COMPANY_SERVER			= 252,
 		COMPANY_INACTIVE_CLIENT = 253, ///< The client is joining
 		COMPANY_NEW_COMPANY     = 254, ///< The client wants a new company
 		COMPANY_SPECTATOR       = 255, ///< The client is spectating
@@ -123,6 +124,11 @@ public:
 	** Set company protected flag
 	*/
 	static void SetProtected(CompanyID company, bool prot);
+
+	/*
+	** Is a server company
+	*/
+	static bool IsServer(CompanyID company);
 
 	/*
 	** Get company HQ size

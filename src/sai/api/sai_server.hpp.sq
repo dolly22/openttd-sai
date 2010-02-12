@@ -43,6 +43,7 @@ void SQSAIServer_Register(Squirrel *engine)
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::GetExecuteCommandCompany, "GetExecuteCommandCompany", 1, ".");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SetExecuteCommandCompany, "SetExecuteCommandCompany", 2, ".i");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ExecuteCommand,           "ExecuteCommand",           6, ".iiii.");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::CreateServerCompany,      "CreateServerCompany",      3, "...");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SetCallbackFlags,         "SetCallbackFlags",         2, ".i");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::GetCallbackFlags,         "GetCallbackFlags",         1, ".");
 

@@ -63,7 +63,10 @@ public:
 	static void ExecuteCommandEx(TileIndex tile, uint32 p1, uint32 p2, uint32 cmd, const char* text, CompanyID company);
 
 #endif /* EXPORT_SKIP */
-
+	/*
+	** Create server company (for citibuilder and similar goals)
+	*/
+	static SAICompany::CompanyID CreateServerCompany(const char* name, const char* president_name);
 
 	/*
 	** Create server company (for citibuilder and similar goals)

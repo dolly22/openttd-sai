@@ -570,6 +570,7 @@ Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMPANY)
 
 	c->is_suspended = false;
 	c->is_protected = false;
+	c->is_server = false;
 
 	// initialize company storage
 	memset(c->sa_storage, 0, sizeof(c->sa_storage));
