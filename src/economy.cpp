@@ -960,6 +960,10 @@ static Money DeliverGoods(int num_pieces, CargoID cargo_type, StationID dest, Ti
 	const CargoSpec *cs = CargoSpec::Get(cargo_type);
 	if (cs->town_effect == TE_FOOD) st->town->new_act_food += accepted;
 	if (cs->town_effect == TE_WATER) st->town->new_act_water += accepted;
+	if (cs->town_effect == TE_GOODS) st->town->new_act_goods += accepted;
+
+	/* Valuables is not a town effect :( */
+	if (cargo_type == CT_VALUABLES) st->town->new_act_valuables += accepted;
 
 	/* Determine profit */
 	Money profit = GetTransportedGoodsIncome(accepted, DistanceManhattan(source_tile, st->xy), days_in_transit, cargo_type);
