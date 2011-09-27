@@ -35,6 +35,7 @@
 #include "../rev.h"
 
 #include "../sai/sai.hpp"
+#include "network_checks.h"
 
 /* This file handles all the server-commands */
 
@@ -1070,6 +1071,10 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_COMMAND)
 	}
 
 	if (GetCommandFlags(cp.cmd) & CMD_CLIENT_ID) cp.p2 = this->client_id;
+
+    /* network command precheck... */
+    if (PrecheckNetworkCommands(this, cp))
+        return NETWORK_RECV_STATUS_OKAY;
 
 	this->incoming_queue.Append(&cp);
 	return NETWORK_RECV_STATUS_OKAY;

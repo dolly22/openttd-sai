@@ -13,6 +13,14 @@ class SAIServer : public SimpleCountedObject  {
 public:
 	static const char *GetClassName() { return "SAIServer"; }
 
+	enum CallbackFlags {
+		BUILD_STATION		= 0x1,		///< Station build commands
+		BUILD_UNMOVABLES	= 0x2,		///< Unmovables build commands
+		BULDOZE_LANDSCAPE	= 0x4,		///< Landcaping and clear commands
+		BUILD_TRANSPORT		= 0x8,		///< Building transport infrastructure (roads, rail, ...)
+		OTHER				= 0x10,		///< Other commands
+	};
+
 	/*
 	** Say to all 
 	*/
@@ -56,6 +64,16 @@ public:
 
 #endif /* EXPORT_SKIP */
 
+
+	/*
+	** Create server company (for citibuilder and similar goals)
+	*/
+	static void SetCallbackFlags(SAIServer::CallbackFlags flags);
+
+	/*
+	** Create server company (for citibuilder and similar goals)
+	*/
+	static SAIServer::CallbackFlags GetCallbackFlags();
 private:
 
 };

@@ -369,6 +369,7 @@
     <ClCompile Include="..\src\waypoint.cpp" />
     <ClCompile Include="..\src\widget.cpp" />
     <ClCompile Include="..\src\window.cpp" />
+    <ClCompile Include="..\src\network\network_checks.cpp" />
     <ClInclude Include="..\src\aircraft.h" />
     <ClInclude Include="..\src\airport.h" />
     <ClInclude Include="..\src\animated_tile_func.h" />
@@ -603,6 +604,7 @@
     <ClInclude Include="..\src\window_type.h" />
     <ClInclude Include="..\src\zoom_func.h" />
     <ClInclude Include="..\src\zoom_type.h" />
+    <ClInclude Include="..\src\network\network_checks.h" />
     <ClCompile Include="..\src\core\alloc_func.cpp" />
     <ClInclude Include="..\src\core\alloc_func.hpp" />
     <ClInclude Include="..\src\core\alloc_type.hpp" />

@@ -139,3 +139,10 @@
 {
 	::SAIServer::ExecuteCommand(tile, p1, p2, cmd, text);
 }
+
+/* static */ SAIServer::CallbackFlags SAI::GetCallbackFlags() {
+	if (!IsStarted())
+		return (SAIServer::CallbackFlags)0;
+
+	return SAI::storage->command_callback_flags;
+}

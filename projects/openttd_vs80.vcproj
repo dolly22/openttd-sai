@@ -746,6 +746,10 @@
 				RelativePath=".\..\src\window.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\..\src\network\network_checks.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1684,6 +1688,10 @@
 			</File>
 			<File
 				RelativePath=".\..\src\zoom_type.h"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\network\network_checks.h"
 				>
 			</File>
 		</Filter>

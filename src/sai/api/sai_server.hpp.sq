@@ -12,6 +12,10 @@
 #include "sai_server.hpp"
 
 namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> SAIServer::CallbackFlags GetParam(ForceType<SAIServer::CallbackFlags>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (SAIServer::CallbackFlags)tmp; }
+	template <> int Return<SAIServer::CallbackFlags>(HSQUIRRELVM vm, SAIServer::CallbackFlags res) { sq_pushinteger(vm, (int32)res); return 1; }
+
 	/* Allow SAIServer to be used as Squirrel parameter */
 	template <> SAIServer *GetParam(ForceType<SAIServer *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIServer *)instance; }
 	template <> SAIServer &GetParam(ForceType<SAIServer &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIServer *)instance; }
@@ -26,6 +30,12 @@ void SQSAIServer_Register(Squirrel *engine)
 	SQSAIServer.PreRegister(engine);
 	SQSAIServer.AddConstructor<void (SAIServer::*)(), 1>(engine, "x");
 
+	SQSAIServer.DefSQConst(engine, SAIServer::BUILD_STATION,     "BUILD_STATION");
+	SQSAIServer.DefSQConst(engine, SAIServer::BUILD_UNMOVABLES,  "BUILD_UNMOVABLES");
+	SQSAIServer.DefSQConst(engine, SAIServer::BULDOZE_LANDSCAPE, "BULDOZE_LANDSCAPE");
+	SQSAIServer.DefSQConst(engine, SAIServer::BUILD_TRANSPORT,   "BUILD_TRANSPORT");
+	SQSAIServer.DefSQConst(engine, SAIServer::OTHER,             "OTHER");
+
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::Say,                      "Say",                      2, "..");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayClient,                "SayClient",                3, ".i.");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayCompany,               "SayCompany",               3, ".i.");
@@ -33,6 +43,8 @@ void SQSAIServer_Register(Squirrel *engine)
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::GetExecuteCommandCompany, "GetExecuteCommandCompany", 1, ".");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SetExecuteCommandCompany, "SetExecuteCommandCompany", 2, ".i");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ExecuteCommand,           "ExecuteCommand",           6, ".iiii.");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SetCallbackFlags,         "SetCallbackFlags",         2, ".i");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::GetCallbackFlags,         "GetCallbackFlags",         1, ".");
 
 	SQSAIServer.PostRegister(engine);
 }

@@ -66,6 +66,11 @@ public:
 	 */		
 	static bool CallbackExists(const char* name);
 
+	/**
+	 * Get SAI callback flags
+	 */
+	static SAIServer::CallbackFlags GetCallbackFlags();
+
 private:
 	static class SAIScanner *sai_scanner;
 	static class SAIInstance *sai_instance;

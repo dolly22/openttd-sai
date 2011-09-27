@@ -74,3 +74,11 @@
 	 * adjust it, and put it back right after the function */
 	::NetworkSendCommand(tile, p1, p2, cmd, NULL, text, company);
 }
+
+/* static */ SAIServer::CallbackFlags SAIServer::GetCallbackFlags() {
+	return ::SAI::GetStorage()->command_callback_flags;
+}
+
+/* static */ void SAIServer::SetCallbackFlags(SAIServer::CallbackFlags flags) {
+	::SAI::GetStorage()->command_callback_flags = flags;
+}

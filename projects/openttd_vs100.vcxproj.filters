@@ -336,6 +336,9 @@
     <ClCompile Include="..\src\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\network\network_checks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClInclude Include="..\src\aircraft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1036,6 +1039,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\zoom_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\network\network_checks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClCompile Include="..\src\core\alloc_func.cpp">
