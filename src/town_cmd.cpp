@@ -1488,7 +1488,12 @@ static void DoCreateTown(Town *t, TileIndex tile, uint32 townnameparts, TownSize
 	t->larger_town = city;
 
 	int x = (int)size * 16 + 3;
-	if (size == TSZ_RANDOM) x = (Random() & 0xF) + 8;
+	if (size == TSZ_RANDOM) {
+		x = (Random() & 0xF) + 8;
+		if (_settings_client.network.only_small_towns) {
+			x = 8;
+		}
+	}
 	/* Don't create huge cities when founding town in-game */
 	if (city && (!manual || _game_mode == GM_EDITOR)) x *= _settings_game.economy.initial_city_size;
 
@@ -1785,6 +1790,15 @@ static Town *CreateRandomTown(uint attempts, uint32 townnameparts, TownSize size
 
 		/* Make sure town can be placed here */
 		if (TownCanBePlacedHere(tile).Failed()) continue;
+
+		/* check desert towns */
+		if (_settings_client.network.only_small_towns) {
+			/* In small towns desert games only allow town in tropical zones and set their most inner tile to normal */
+			if (_settings_game.game_creation.landscape == LT_TROPIC && GetTropicZone(tile) != TROPICZONE_DESERT)
+				continue;
+			else
+				SetTropicZone(tile, TROPICZONE_NORMAL);
+		}
 
 		/* Allocate a town struct */
 		Town *t = new Town(tile);

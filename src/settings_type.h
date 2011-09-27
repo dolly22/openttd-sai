@@ -184,6 +184,7 @@ struct NetworkSettings {
 	uint16 last_port;                                     ///< port of the last joined server
 	bool   no_http_content_downloads;                     ///< do not do content downloads over HTTP
 	char   sai_name[NETWORK_HOSTNAME_LENGTH];             ///< Name of Server AI to start
+	bool   only_small_towns;							  ///< generate only small towns to map...
 #else /* ENABLE_NETWORK */
 #endif
 };
