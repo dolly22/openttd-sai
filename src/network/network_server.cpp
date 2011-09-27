@@ -1207,9 +1207,20 @@ void NetworkServerSendChat(NetworkAction action, DestType desttype, int dest, co
 					}
 				}
 			} else {
+				/* mirror localy for dedicated servers (just for save to logs) */
+				if (_network_dedicated && from_id != dest && from_id != CLIENT_ID_SERVER && dest != CLIENT_ID_SERVER) {
+					ci = NetworkClientInfo::GetByClientID(from_id);
+					ci_to = NetworkClientInfo::GetByClientID((ClientID)dest);
+					if (ci != NULL && ci_to != NULL)
+					{
+						char message[1024];
+						seprintf(message, lastof(message), "-> %s: %s", ci_to->client_name, msg);
+						NetworkTextMessage(action, CC_DEFAULT, false, ci->client_name, message, data);				
+					}
+				}
+
 				/* Else find the client to send the message to */
-				FOR_ALL_CLIENT_SOCKETS(cs) {
-					if (cs->client_id == (ClientID)dest) {
+				FOR_ALL_CLIENT_SOCKETS(cs) {					if (cs->client_id == (ClientID)dest) {
 						cs->SendChat(action, from_id, false, msg, data);
 						break;
 					}
