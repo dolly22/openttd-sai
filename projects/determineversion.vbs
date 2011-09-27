@@ -304,7 +304,7 @@ Function DetermineSVNVersion()
 		End If ' version = "norev000"
 	End If ' version <> "norev000"
 
-	If version = "norev000" And FSO.FileExists("../.ottdrev") Then
+	If True And FSO.FileExists("../.ottdrev") Then
 		Dim rev_file
 		Set rev_file = FSO.OpenTextFile("../.ottdrev", 1, True, 0)
 		DetermineSVNVersion = rev_file.ReadLine()
