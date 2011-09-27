@@ -20,6 +20,7 @@
 #include "../ai_storage.hpp"
 #include "../ai_instance.hpp"
 #include "ai_error.hpp"
+#include "../../sai/sai.hpp"
 
 static AIStorage *GetStorage()
 {
@@ -202,6 +203,12 @@ int AIObject::GetCallbackVariable(int index)
 
 bool AIObject::DoCommand(TileIndex tile, uint32 p1, uint32 p2, uint cmd, const char *text, AISuspendCallbackProc *callback)
 {
+	// isn't it the SAI executing this command?
+	if (!Company::IsValidAiID(_current_company)) {
+		::SAI::ExecuteAICommand(tile, p1, p2, cmd, text);
+		return true;
+	}
+
 	if (!AIObject::CanSuspend()) {
 		throw AI_FatalError("You are not allowed to execute any DoCommand (even indirect) in your constructor, Save(), Load(), and any valuator.");
 	}

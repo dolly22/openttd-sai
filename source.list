@@ -1016,6 +1016,7 @@ sai/sai_scanner.cpp
 sai/sai_scanner.hpp
 sai/sai_controller.cpp
 sai/sai_controller.hpp
+sai/sai_storage.hpp
 
 # SAI API
 sai/api/sai_client.hpp

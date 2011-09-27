@@ -18,6 +18,7 @@ public:
 		OWNER_TOWN				= 0x0F,
 		OWNER_NONE				= 0x10,
 
+		/* fake companies */
 		COMPANY_INACTIVE_CLIENT = 253, ///< The client is joining
 		COMPANY_NEW_COMPANY     = 254, ///< The client wants a new company
 		COMPANY_SPECTATOR       = 255, ///< The client is spectating

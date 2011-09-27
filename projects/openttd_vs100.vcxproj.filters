@@ -2550,6 +2550,9 @@
     <ClInclude Include="..\src\sai\sai_controller.hpp">
       <Filter>SAI Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\sai\sai_storage.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\sai\api\sai_client.hpp">
       <Filter>SAI API</Filter>
     </ClInclude>

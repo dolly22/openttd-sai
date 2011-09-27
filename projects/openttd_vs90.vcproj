@@ -3815,6 +3815,10 @@
 				RelativePath=".\..\src\sai\sai_controller.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_storage.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="SAI API"

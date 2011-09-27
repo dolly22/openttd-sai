@@ -26,11 +26,13 @@ void SQSAIServer_Register(Squirrel *engine)
 	SQSAIServer.PreRegister(engine);
 	SQSAIServer.AddConstructor<void (SAIServer::*)(), 1>(engine, "x");
 
-	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::Say,            "Say",            2, "..");
-	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayClient,      "SayClient",      3, ".i.");
-	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayCompany,     "SayCompany",     3, ".i.");
-	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ConsoleCmd,     "ConsoleCmd",     2, "..");
-	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ExecuteCommand, "ExecuteCommand", 6, ".iiii.");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::Say,                      "Say",                      2, "..");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayClient,                "SayClient",                3, ".i.");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayCompany,               "SayCompany",               3, ".i.");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ConsoleCmd,               "ConsoleCmd",               2, "..");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::GetExecuteCommandCompany, "GetExecuteCommandCompany", 1, ".");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SetExecuteCommandCompany, "SetExecuteCommandCompany", 2, ".i");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ExecuteCommand,           "ExecuteCommand",           6, ".iiii.");
 
 	SQSAIServer.PostRegister(engine);
 }

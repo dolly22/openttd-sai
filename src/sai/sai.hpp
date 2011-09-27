@@ -3,8 +3,8 @@
 
 #include "../core/string_compare_type.hpp"
 #include <map>
-#include "../ai/ai_storage.hpp"
 
+#include "sai_storage.hpp"
 #include "sai_instance.hpp"
 
 
@@ -34,8 +34,12 @@ public:
 
 	static SAIInstance *GetInstance();
 
-	static AIStorage *GetStorage();
+	static SAIStorage *GetStorage();
 
+	/**
+	 * Execute command issued from some AI commands
+	 */
+	static void ExecuteAICommand(TileIndex tile, uint32 p1, uint32 p2, uint cmd, const char *text);
 
 	/**
 	 * Invoke callback function with no return value
@@ -65,7 +69,7 @@ public:
 private:
 	static class SAIScanner *sai_scanner;
 	static class SAIInstance *sai_instance;
-	static class AIStorage *storage;
+	static class SAIStorage *storage;
 };
 
 #endif /* SAI_HPP */

@@ -33,6 +33,16 @@ public:
 	*/
 	static void ConsoleCmd(const char* command);
 
+	/*
+	 * Get what company will be network commands send as
+	 */
+	static SAICompany::CompanyID GetExecuteCommandCompany();
+
+	/*
+	 * Set what company will be network commands send as
+	 */
+	static void SetExecuteCommandCompany(SAICompany::CompanyID);
+
 	/**
 	* Execute command
 	**/

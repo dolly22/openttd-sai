@@ -1107,6 +1107,7 @@
     <ClInclude Include="..\src\sai\sai_scanner.hpp" />
     <ClCompile Include="..\src\sai\sai_controller.cpp" />
     <ClInclude Include="..\src\sai\sai_controller.hpp" />
+    <ClInclude Include="..\src\sai\sai_storage.hpp" />
     <ClInclude Include="..\src\sai\api\sai_client.hpp" />
     <ClInclude Include="..\src\sai\api\sai_clientlist.hpp" />
     <ClInclude Include="..\src\sai\api\sai_company.hpp" />

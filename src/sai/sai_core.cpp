@@ -11,10 +11,11 @@
 #include "sai_scanner.hpp"
 #include "sai_instance.hpp"
 #include "sai_info.hpp"
+#include "api/sai_server.hpp"
 
 /* static */ SAIInstance *SAI::sai_instance = NULL;
 /* static */ SAIScanner *SAI::sai_scanner = NULL;
-/* static */ AIStorage *SAI::storage = NULL;
+/* static */ SAIStorage *SAI::storage = NULL;
 
 /* static */ void SAI::Initialize()
 {
@@ -22,7 +23,7 @@
 
 	if (SAI::sai_scanner == NULL) 
 	{
-		SAI::storage = new AIStorage();
+		SAI::storage = new SAIStorage();
 		SAI::sai_scanner = new SAIScanner();
 	}
 }
@@ -80,7 +81,7 @@
 	return sai_instance;
 }
 
-/* static */ AIStorage *SAI::GetStorage()
+/* static */ SAIStorage *SAI::GetStorage()
 {
 	return storage;
 }
@@ -132,4 +133,9 @@
 		return false;
 
 	return SAI::sai_instance->MethodExists(method_name);
+}
+
+/* static */ void SAI::ExecuteAICommand(TileIndex tile, uint32 p1, uint32 p2, uint cmd, const char *text)
+{
+	::SAIServer::ExecuteCommand(tile, p1, p2, cmd, text);
 }

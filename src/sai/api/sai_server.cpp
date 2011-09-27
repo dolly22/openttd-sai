@@ -11,6 +11,7 @@
 #include "../../company_base.h"
 #include "../../command_type.h"
 #include "../../command_func.h"
+#include "../sai.hpp"
 
 
 /* static */ void SAIServer::Say(const char* msg)
@@ -42,8 +43,29 @@
 	::IConsoleCmdExec(command);
 }
 
+/* static */ SAICompany::CompanyID SAIServer::GetExecuteCommandCompany() {
+	return ::SAI::GetStorage()->execute_commands_as;
+}
+
+/* static */ void SAIServer::SetExecuteCommandCompany(SAICompany::CompanyID company) {
+	::SAI::GetStorage()->execute_commands_as = company;
+}
+
 /* static */ void SAIServer::ExecuteCommand(TileIndex tile, uint32 p1, uint32 p2, uint32 cmd, const char* text) {
-	SAIServer::ExecuteCommandEx(tile, p1, p2, cmd, text, _current_company);
+	// execute based on what company is specified in SAIStorage
+
+	const SAIStorage* storage = ::SAI::GetStorage();
+	CompanyID company = OWNER_NONE;
+
+	if (storage->execute_commands_as == ::SAICompany::OWNER_TOWN 
+		|| storage->execute_commands_as == ::SAICompany::OWNER_NONE
+		|| ::Company::IsValidID(storage->execute_commands_as)) {
+
+		// execute as owner none or owner town
+		company = (CompanyID)storage->execute_commands_as;
+	}
+
+	SAIServer::ExecuteCommandEx(tile, p1, p2, cmd, text, company);
 }
 
 
