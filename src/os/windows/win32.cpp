@@ -586,7 +586,7 @@ void CSleep(int milliseconds)
  */
 const char *FS2OTTD(const TCHAR *name)
 {
-	static char utf8_buf[512];
+	static char utf8_buf[8192];
 #if defined(UNICODE)
 	return convert_from_fs(name, utf8_buf, lengthof(utf8_buf));
 #else
@@ -624,7 +624,7 @@ const char *FS2OTTD(const TCHAR *name)
  */
 const TCHAR *OTTD2FS(const char *name)
 {
-	static TCHAR system_buf[512];
+	static TCHAR system_buf[8192];
 #if defined(UNICODE)
 	return convert_to_fs(name, system_buf, lengthof(system_buf));
 #else

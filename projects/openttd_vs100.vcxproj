@@ -804,6 +804,9 @@
     <ClCompile Include="..\src\3rdparty\squirrel\squirrel\sqstate.cpp" />
     <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdaux.cpp" />
     <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdmath.cpp" />
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdsystem.cpp" />
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdstring.cpp" />
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdrex.cpp" />
     <ClCompile Include="..\src\3rdparty\squirrel\squirrel\sqtable.cpp" />
     <ClCompile Include="..\src\3rdparty\squirrel\squirrel\sqvm.cpp" />
     <ClInclude Include="..\src\3rdparty\squirrel\squirrel\sqarray.h" />
@@ -1093,6 +1096,17 @@
     <ClCompile Include="..\src\os\windows\win32.cpp" />
     <ClInclude Include="..\src\thread\thread.h" />
     <ClCompile Include="..\src\thread\thread_win32.cpp" />
+    <ClInclude Include="..\src\sai\sai.hpp" />
+    <ClCompile Include="..\src\sai\sai_api.cpp" />
+    <ClCompile Include="..\src\sai\sai_core.cpp" />
+    <ClCompile Include="..\src\sai\sai_info.cpp" />
+    <ClInclude Include="..\src\sai\sai_info.hpp" />
+    <ClCompile Include="..\src\sai\sai_instance.cpp" />
+    <ClInclude Include="..\src\sai\sai_instance.hpp" />
+    <ClCompile Include="..\src\sai\sai_scanner.cpp" />
+    <ClInclude Include="..\src\sai\sai_scanner.hpp" />
+    <ClCompile Include="..\src\sai\sai_controller.cpp" />
+    <ClInclude Include="..\src\sai\sai_controller.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

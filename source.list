@@ -571,6 +571,9 @@ script/squirrel_std.hpp
 3rdparty/squirrel/squirrel/sqstate.cpp
 3rdparty/squirrel/sqstdlib/sqstdaux.cpp
 3rdparty/squirrel/sqstdlib/sqstdmath.cpp
+3rdparty/squirrel/sqstdlib/sqstdsystem.cpp
+3rdparty/squirrel/sqstdlib/sqstdstring.cpp
+3rdparty/squirrel/sqstdlib/sqstdrex.cpp
 3rdparty/squirrel/squirrel/sqtable.cpp
 3rdparty/squirrel/squirrel/sqvm.cpp
 
@@ -1000,3 +1003,17 @@ thread/thread.h
 #else
 	thread/thread_none.cpp
 #end
+
+# SAI Core
+sai/sai.hpp
+sai/sai_api.cpp
+sai/sai_core.cpp
+sai/sai_info.cpp
+sai/sai_info.hpp
+sai/sai_instance.cpp
+sai/sai_instance.hpp
+sai/sai_scanner.cpp
+sai/sai_scanner.hpp
+sai/sai_controller.cpp
+sai/sai_controller.hpp
+

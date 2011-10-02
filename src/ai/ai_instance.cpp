@@ -79,6 +79,8 @@
 
 /** The maximum number of operations for saving or loading the data of an AI. */
 static const int MAX_SL_OPS          = 100000;
+#include "../sai/sai.hpp"
+
 /** The maximum number of operations for initial start of an AI. */
 static const int MAX_CONSTRUCTOR_OPS = 100000;
 
@@ -424,6 +426,10 @@ void AIInstance::CollectGarbage() const
 
 /* static */ AIStorage *AIInstance::GetStorage()
 {
+	// handle SAI storage
+	if (!Company::IsValidAiID(_current_company))
+		return SAI::GetStorage();	
+
 	assert(Company::IsValidAiID(_current_company));
 	return Company::Get(_current_company)->ai_instance->storage;
 }

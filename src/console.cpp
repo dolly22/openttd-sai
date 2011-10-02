@@ -42,7 +42,7 @@ void IConsoleInit()
 	IConsoleStdLibRegister();
 }
 
-static void IConsoleWriteToLogFile(const char *string)
+void IConsoleWriteToLogFile(const char *string)
 {
 	if (_iconsole_output_file != NULL) {
 		/* if there is an console output file ... also print it there */
@@ -112,7 +112,9 @@ void IConsolePrint(TextColour colour_code, const char *string)
 #ifdef ENABLE_NETWORK
 		NetworkAdminConsole("console", str);
 #endif /* ENABLE_NETWORK */
-		fprintf(stdout, "%s%s\n", GetLogPrefix(), str);
+
+		/* do not prefix in console */
+		fprintf(stdout, "%s\n", str);
 		fflush(stdout);
 		IConsoleWriteToLogFile(str);
 		free(str); // free duplicated string since it's not used anymore

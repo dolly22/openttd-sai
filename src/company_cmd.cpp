@@ -565,6 +565,9 @@ Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMPANY)
 
 	c->num_engines = CallocT<uint16>(Engine::GetPoolSize());
 
+	// initialize company storage
+	memset(c->sa_storage, 0, sizeof(c->sa_storage));
+
 	return c;
 }
 

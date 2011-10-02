@@ -25,6 +25,7 @@
 #include "../core/random_func.hpp"
 #include "../saveload/saveload.h"
 #include "dedicated_v.h"
+#include "../sai/sai.hpp"
 
 #ifdef BEOS_NET_SERVER
 #include <net/socket.h>
@@ -270,6 +271,10 @@ void VideoDriver_Dedicated::MainLoop()
 	_network_dedicated = true;
 	_current_company = _local_company = COMPANY_SPECTATOR;
 
+	// initialize server AI
+	SAI::Initialize();
+	SAI::Start();
+
 	/* If SwitchMode is SM_LOAD, it means that the user used the '-g' options */
 	if (_switch_mode != SM_LOAD) {
 		StartNewGameWithoutGUI(GENERATE_NEW_SEED);
@@ -314,6 +319,9 @@ void VideoDriver_Dedicated::MainLoop()
 		/* Don't sleep when fast forwarding (for desync debugging) */
 		if (!_ddc_fastforward) CSleep(1);
 	}
+
+	// uninitialize Server AI
+	SAI::Uninitialize();
 }
 
 #endif /* ENABLE_NETWORK */

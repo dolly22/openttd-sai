@@ -29,6 +29,8 @@ void IConsoleDebug(const char *dbg, const char *string);
 void IConsoleWarning(const char *string);
 void IConsoleError(const char *string);
 
+void IConsoleWriteToLogFile(const char *string);
+
 /* Parser */
 void IConsoleCmdExec(const char *cmdstr);
 

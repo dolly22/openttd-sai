@@ -2527,6 +2527,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\..\src\3rdparty\squirrel\sqstdlib\sqstdsystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\3rdparty\squirrel\sqstdlib\sqstdstring.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\3rdparty\squirrel\sqstdlib\sqstdrex.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\..\src\3rdparty\squirrel\squirrel\sqtable.cpp"
 				>
 			</File>
@@ -3756,6 +3768,54 @@
 			</File>
 			<File
 				RelativePath=".\..\src\thread\thread_win32.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="SAI Core"
+			>
+			<File
+				RelativePath=".\..\src\sai\sai.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_api.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_core.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_info.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_info.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_instance.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_instance.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_scanner.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_scanner.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_controller.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\sai_controller.hpp"
 				>
 			</File>
 		</Filter>

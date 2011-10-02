@@ -673,6 +673,7 @@ const SettingDesc _settings[] = {
 	  SDTC_STR(network.last_host,              SLE_STRB, S,  0,    "",                        STR_NULL,                                       NULL),
 	  SDTC_VAR(network.last_port,            SLE_UINT16, S,  0,     0,     0,  UINT16_MAX, 0, STR_NULL,                                       NULL),
 	 SDTC_BOOL(network.no_http_content_downloads,        S,  0, false,                        STR_NULL,                                       NULL),
+	  SDTC_STR(network.sai_name,              SLE_STRB, S,  0,    "",                         STR_NULL,                                       NULL),
 #endif /* ENABLE_NETWORK */
 
 	/*

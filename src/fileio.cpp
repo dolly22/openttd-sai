@@ -231,6 +231,7 @@ static const char * const _subdirs[NUM_SUBDIRS] = {
 	"lang" PATHSEP,
 	"ai" PATHSEP,
 	"ai" PATHSEP "library" PATHSEP,
+	"sai" PATHSEP,
 };
 
 const char *_searchpaths[NUM_SEARCHPATHS];
@@ -1070,7 +1071,7 @@ void DeterminePaths(const char *exe)
 	FioCreateDirectory(_searchpaths[SP_AUTODOWNLOAD_DIR]);
 
 	/* Create the directory for each of the types of content */
-	const Subdirectory dirs[] = { SCENARIO_DIR, HEIGHTMAP_DIR, DATA_DIR, AI_DIR, AI_LIBRARY_DIR, GM_DIR };
+	const Subdirectory dirs[] = { SCENARIO_DIR, HEIGHTMAP_DIR, DATA_DIR, AI_DIR, AI_LIBRARY_DIR, SAI_DIR, GM_DIR };
 	for (uint i = 0; i < lengthof(dirs); i++) {
 		char *tmp = str_fmt("%s%s", _searchpaths[SP_AUTODOWNLOAD_DIR], _subdirs[dirs[i]]);
 		FioCreateDirectory(tmp);

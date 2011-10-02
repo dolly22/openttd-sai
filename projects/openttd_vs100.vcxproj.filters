@@ -91,6 +91,9 @@
     <Filter Include="Threading">
       <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000029}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SAI Core">
+      <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000030}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\airport.cpp">
@@ -1632,6 +1635,15 @@
     <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdmath.cpp">
       <Filter>Squirrel</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdsystem.cpp">
+      <Filter>Squirrel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdstring.cpp">
+      <Filter>Squirrel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdparty\squirrel\sqstdlib\sqstdrex.cpp">
+      <Filter>Squirrel</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\3rdparty\squirrel\squirrel\sqtable.cpp">
       <Filter>Squirrel</Filter>
     </ClCompile>
@@ -2499,6 +2511,39 @@
     <ClCompile Include="..\src\thread\thread_win32.cpp">
       <Filter>Threading</Filter>
     </ClCompile>
+    <ClInclude Include="..\src\sai\sai.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\sai\sai_api.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\sai_core.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\sai_info.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\sai\sai_info.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\sai\sai_instance.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\sai\sai_instance.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\sai\sai_scanner.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\sai\sai_scanner.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\sai\sai_controller.cpp">
+      <Filter>SAI Core</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\sai\sai_controller.hpp">
+      <Filter>SAI Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

@@ -51,6 +51,7 @@
 #include "table/strings.h"
 #include "table/town_land.h"
 
+#include "sai/sai.hpp"
 TownID _new_town_id;
 
 /* Initialize the town-pool */
@@ -1427,6 +1428,9 @@ static void DoCreateTown(Town *t, TileIndex tile, uint32 townnameparts, TownSize
 	t->new_act_water = 0;
 	t->act_food = 0;
 	t->act_water = 0;
+
+	// initialize town storage
+	memset(t->sa_storage, 0, sizeof(t->sa_storage));
 
 	for (uint i = 0; i != MAX_COMPANIES; i++) t->ratings[i] = RATING_INITIAL;
 

@@ -29,6 +29,9 @@ struct CompanyEconomyEntry {
 	Money company_value;
 };
 
+
+static const int SAI_COMPANY_STORAGE_SIZE = 10;
+
 typedef Pool<Company, CompanyByte, 1, MAX_COMPANIES> CompanyPool;
 extern CompanyPool _company_pool;
 
@@ -77,6 +80,8 @@ struct CompanyProperties {
 	 * @note It is possible that the user is also participating in such a company.
 	 */
 	bool is_ai;
+	// SA universal company storage...
+	uint32 sa_storage[SAI_COMPANY_STORAGE_SIZE];
 
 	Money yearly_expenses[3][EXPENSES_END];              ///< Expenses of the company for the last three years, in every #Expenses category.
 	CompanyEconomyEntry cur_economy;                     ///< Economic data of the company of this quarter.

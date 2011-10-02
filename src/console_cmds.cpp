@@ -42,6 +42,8 @@
 	#include "table/strings.h"
 #endif /* ENABLE_NETWORK */
 
+#include "sai/sai.hpp"
+
 /* scriptfile handling */
 static bool _script_running; ///< Script is running (used to abort execution when #ConReturn is encountered).
 
@@ -1822,6 +1824,19 @@ DEF_CONSOLE_CMD(ConGamelogPrint)
 	return true;
 }
 
+DEF_CONSOLE_CMD(ConReloadSAI)
+{
+	if (_networking && !_network_server) {
+		IConsoleWarning("Only the server can reload an SAI.");
+		return true;
+	}
+	IConsolePrint(CC_DEFAULT, "Server AI subsystem is reloading.");
+	SAI::Initialize();
+	SAI::Start();
+
+	return true;
+}
+
 DEF_CONSOLE_CMD(ConNewGRFReload)
 {
 	if (argc == 0) {
@@ -1967,6 +1982,9 @@ void IConsoleStdLibRegister()
 	IConsoleAliasRegister("restart_game_year",     "setting restart_game_year %+");
 	IConsoleAliasRegister("min_players",           "setting min_active_clients %+");
 	IConsoleAliasRegister("reload_cfg",            "setting reload_cfg %+");
+
+	// Server automation hoooks
+	IConsoleCmdRegister("reload_sai",		ConReloadSAI);
 #endif /* ENABLE_NETWORK */
 
 	/* debugging stuff */

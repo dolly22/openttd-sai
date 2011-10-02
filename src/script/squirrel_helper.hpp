@@ -112,7 +112,7 @@ namespace SQConvert {
 		char *tmp_str = strdup(SQ2OTTD(tmp));
 		sq_poptop(vm);
 		*ptr->Append() = (void *)tmp_str;
-		str_validate(tmp_str, tmp_str + strlen(tmp_str));
+		str_validate(tmp_str, tmp_str + strlen(tmp_str), true, true);
 		return tmp_str;
 	}
 

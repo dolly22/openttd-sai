@@ -29,6 +29,8 @@ static const uint CUSTOM_TOWN_MAX_NUMBER = 5000;  ///< this is the maximum numbe
 
 static const uint INVALID_TOWN = 0xFFFF;
 
+static const int SAI_TOWN_STORAGE_SIZE = 10;
+
 typedef Pool<Town, TownID, 64, 64000> TownPool;
 extern TownPool _town_pool;
 
@@ -87,6 +89,9 @@ struct Town : TownPool::PoolItem<&_town_pool> {
 	uint16 act_water;
 	uint16 new_act_food;
 	uint16 new_act_water;
+
+	/* SA universal town storage... */
+	uint32 sa_storage[SAI_TOWN_STORAGE_SIZE];
 
 	/* Time until we rebuild a house. */
 	uint16 time_until_rebuild;

@@ -29,11 +29,6 @@ private:
 	 */
 	static SQInteger _RunError(HSQUIRRELVM vm);
 
-	/**
-	 * Get the squirrel VM. Try to avoid using this.
-	 */
-	HSQUIRRELVM GetVM() { return this->vm; }
-
 protected:
 	/**
 	 * The CompileError handler.
@@ -62,6 +57,11 @@ public:
 
 	Squirrel();
 	~Squirrel();
+
+	/**
+	 * Get the squirrel VM. Try to avoid using this.
+	 */
+	HSQUIRRELVM GetVM() { return this->vm; }
 
 	/**
 	 * Load a script.
@@ -146,6 +146,9 @@ public:
 	bool CallStringMethodStrdup(HSQOBJECT instance, const char *method_name, const char **res, int suspend);
 	bool CallIntegerMethod(HSQOBJECT instance, const char *method_name, int *res, int suspend);
 	bool CallBoolMethod(HSQOBJECT instance, const char *method_name, bool *res, int suspend);
+
+	bool CallMethod(HSQOBJECT instance, const char *method_name, HSQOBJECT *ret, int suspend, const char *arg_format, ...);
+	bool CallMethod(HSQOBJECT instance, const char *method_name, HSQOBJECT *ret, int suspend, const char *arg_format, va_list vl);
 
 	/**
 	 * Check if a method exists in an instance.

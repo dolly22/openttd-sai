@@ -548,6 +548,13 @@ int ttd_main(int argc, char *argv[])
 		}
 	}
 
+	// check for dedicated server as we are not supporting anything else for now 
+	// (just to make sure some users will not complain if GUI is broken)
+	if (!dedicated)
+	{
+		usererror("ServerAI MOD supports dedicated servers only");
+	}
+
 #if defined(WINCE) && defined(_DEBUG)
 	/* Switch on debug lvl 4 for WinCE if Debug release, as you can't give params, and you most likely do want this information */
 	SetDebugString("4");

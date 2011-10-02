@@ -246,6 +246,84 @@ bool Squirrel::CallMethod(HSQOBJECT instance, const char *method_name, HSQOBJECT
 	return true;
 }
 
+
+bool Squirrel::CallMethod(HSQOBJECT instance, const char *method_name, HSQOBJECT *ret, int suspend, const char *arg_format, ...)
+{
+	va_list vl;
+	va_start(vl, arg_format);
+	bool result = CallMethod(instance, method_name, ret, suspend, arg_format, vl);
+	va_end(vl);
+
+	return result;
+}
+
+bool Squirrel::CallMethod(HSQOBJECT instance, const char *method_name, HSQOBJECT *ret, int suspend, const char *arg_format, va_list vl)
+{
+	assert(!this->crashed);
+	/* Store the stack-location for the return value. We need to
+	 * restore this after saving or the stack will be corrupted
+	 * if we're in the middle of a DoCommand. */
+	SQInteger last_target = this->vm->_suspended_target;
+	/* Store the current top */
+	int top = sq_gettop(this->vm);
+	/* Go to the instance-root */
+	sq_pushobject(this->vm, instance);
+	/* Find the function-name inside the script */
+	sq_pushstring(this->vm, OTTD2FS(method_name), -1);
+	if (SQ_FAILED(sq_get(this->vm, -2))) {
+		DEBUG(misc, 0, "[squirrel] Could not find '%s' in the class", method_name);
+		sq_settop(this->vm, top);
+		return false;
+	}
+	/* Call the method */
+	sq_pushobject(this->vm, instance);
+
+	/* Get info about method parameters */
+	SQUnsignedInteger method_params, method_freevars;
+	sq_getclosureinfo(vm, -2, &method_params, &method_freevars);
+
+	/* Push method arguments */
+	unsigned int nargs = 0;
+	if (arg_format != NULL)
+		nargs = strlen(arg_format);
+
+	if (nargs < method_params - 1) {
+		// wrong number of arguments...
+		DEBUG(misc, 0, "[squirrel] Wrong number of arguments when calling '%s' in the class - expected %i, got %i.", method_name, method_params - 1, nargs);
+		sq_settop(this->vm, top);
+		return false;
+	}
+
+	for (unsigned int i=0; i < nargs; i++)
+	{
+		char arg_type = *(arg_format + i);
+		switch(arg_type) {
+			case 'i':
+				// push integer value
+				sq_pushinteger(this->vm, va_arg(vl, int));
+				break;
+
+			case 's':
+			default:
+				// push string value
+				const char* param_val = va_arg(vl, const char *);
+				sq_pushstring(this->vm, OTTD2SQ(param_val), -1);
+				break;
+		}
+	}
+
+	if (SQ_FAILED(sq_call(this->vm, nargs+1, ret == NULL ? SQFalse : SQTrue, SQTrue, suspend))) return false;
+	if (ret != NULL) sq_getstackobj(vm, -1, ret);
+	/* Reset the top, but don't do so for the AI main function, as we need
+	 *  a correct stack when resuming. */
+	if (suspend == -1) sq_settop(this->vm, top);
+	/* Restore the return-value location. */
+	this->vm->_suspended_target = last_target;
+
+	return true;
+}
+
+
 bool Squirrel::CallStringMethodStrdup(HSQOBJECT instance, const char *method_name, const char **res, int suspend)
 {
 	HSQOBJECT ret;
