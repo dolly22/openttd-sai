@@ -849,6 +849,16 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_JOIN)
 	ci->client_lang = client_lang;
 	DEBUG(desync, 1, "client: %08x; %02x; %02x; %04x", _date, _date_fract, (int)ci->client_playas, ci->index);
 
+	// SAIHook OnClientJoining
+	int client_join_send_error;		
+	if (SAI::InvokeIntegerCallback("OnClientJoining", &client_join_send_error, "i", ci->client_id))
+	{
+		if (client_join_send_error != 0) {
+			// return this error and do not allow the client to join
+			return this->SendError((NetworkErrorCode)client_join_send_error);
+		}
+	}
+
 	/* Make sure companies to which people try to join are not autocleaned */
 	if (Company::IsValidID(playas)) _network_company_states[playas].months_empty = 0;
 
@@ -985,6 +995,9 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_MAP_OK)
 
 		/* also update the new client with our max values */
 		this->SendConfigUpdate();
+
+		// SAIHook OnClientJoined
+		SAI::InvokeCallback("OnClientJoined", "i", this->client_id);
 
 		/* quickly update the syncing client with company details */
 		return this->SendCompanyUpdate();
@@ -1790,6 +1803,8 @@ void NetworkServer_Tick(bool send_frame)
 /** Yearly "callback". Called whenever the year changes. */
 void NetworkServerYearlyLoop()
 {
+	// SAIHook OnYearlyLoop
+	SAI::InvokeCallback("OnYearlyLoop");
 	NetworkCheckRestartMap();
 	NetworkAdminUpdate(ADMIN_FREQUENCY_ANUALLY);
 }
@@ -1797,15 +1812,22 @@ void NetworkServerYearlyLoop()
 /** Monthly "callback". Called whenever the month changes. */
 void NetworkServerMonthlyLoop()
 {
+	// SAIHook OnMonthlyLoop
+	SAI::InvokeCallback("OnMonthlyLoop");
 	NetworkAutoCleanCompanies();
 	NetworkAdminUpdate(ADMIN_FREQUENCY_MONTHLY);
 	if ((_cur_month % 3) == 0) NetworkAdminUpdate(ADMIN_FREQUENCY_QUARTERLY);
 }
 
+void NetworkServerWeeklyLoop()
+{
+	//NetworkFastCleanCompanies();
+	// SAIHook OnWeeklyLoop
+	SAI::InvokeCallback("OnWeeklyLoop");
+}
 /** Daily "callback". Called whenever the date changes. */
 void NetworkServerDailyLoop()
-{
-	NetworkAdminUpdate(ADMIN_FREQUENCY_DAILY);
+{	NetworkAdminUpdate(ADMIN_FREQUENCY_DAILY);
 	if ((_date % 7) == 3) NetworkAdminUpdate(ADMIN_FREQUENCY_WEEKLY);
 }
 

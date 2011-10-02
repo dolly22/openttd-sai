@@ -883,6 +883,9 @@ CommandCost CmdCompanyCtrl(TileIndex tile, DoCommandFlag flags, uint32 p1, uint3
 					NetworkAdminCompanyInfo(c, true);
 					NetworkServerSendChat(NETWORK_ACTION_COMPANY_NEW, DESTTYPE_BROADCAST, 0, "", ci->client_id, ci->client_playas + 1);
 				}
+
+				//SAIHook OnNewCompany
+				SAI::InvokeCallback("OnNewCompany", "i", c->index);
 			}
 #endif /* ENABLE_NETWORK */
 			break;
@@ -901,6 +904,13 @@ CommandCost CmdCompanyCtrl(TileIndex tile, DoCommandFlag flags, uint32 p1, uint3
 
 			if (!(flags & DC_EXEC)) return CommandCost();
 
+#ifdef ENABLE_NETWORK
+			if (_network_server) {
+				//SAIHook OnCompanyDeleting
+				SAI::InvokeCallback("OnCompanyDeleting", "i", c->index);
+			}
+#endif
+
 			/* Delete any open window of the company */
 			DeleteCompanyWindows(c->index);
 			CompanyNewsInformation *cni = MallocT<CompanyNewsInformation>(1);
@@ -915,6 +925,13 @@ CommandCost CmdCompanyCtrl(TileIndex tile, DoCommandFlag flags, uint32 p1, uint3
 			/* Remove the company */
 			ChangeOwnershipOfCompanyItems(c->index, INVALID_OWNER);
 			if (c->is_ai) AI::Stop(c->index);
+
+#ifdef ENABLE_NETWORK
+			if (_network_server) {
+				//SAIHook OnCompanyDeleted
+				SAI::InvokeCallback("OnCompanyDeleted", "i", c->index);
+			}
+#endif
 
 			CompanyID c_index = c->index;
 			delete c;

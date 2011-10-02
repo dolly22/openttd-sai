@@ -285,6 +285,13 @@ void IncreaseDate()
 
 	/* check if we entered a new month? */
 	ConvertDateToYMD(_date, &ymd);
+
+#ifdef ENABLE_NETWORK
+    /* check for new weak */
+    if ((ymd.day & 0x7) == 0x1)
+            if (_network_server) NetworkServerWeeklyLoop();
+#endif /* ENABLE_NETWORK */
+
 	if (ymd.month == _cur_month) return;
 
 	/* yes, call various monthly loops */

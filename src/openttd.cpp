@@ -68,6 +68,8 @@
 
 #include "table/strings.h"
 
+#include "sai/sai.hpp"
+
 StringID _switch_mode_errorstr;
 
 void CallLandscapeTick();
@@ -1041,6 +1043,13 @@ void SwitchToMode(SwitchMode new_mode)
 		ShowErrorMessage(_switch_mode_errorstr, INVALID_STRING_ID, WL_CRITICAL);
 		_switch_mode_errorstr = INVALID_STRING_ID;
 	}
+
+#ifdef ENABLE_NETWORK
+	if (_network_server) {
+		// SAIHook OnServerNewGame
+		SAI::InvokeCallback("OnServerNewGame", "i", new_mode);
+	}
+#endif /* ENABLE_NETWORK */
 }
 
 

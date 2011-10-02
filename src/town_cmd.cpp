@@ -52,6 +52,9 @@
 #include "table/town_land.h"
 
 #include "sai/sai.hpp"
+
+static Town *_cleared_town;
+static int _cleared_town_rating;
 TownID _new_town_id;
 
 /* Initialize the town-pool */
@@ -454,6 +457,7 @@ static void TileLoop_Town(TileIndex tile)
 	}
 
 	const HouseSpec *hs = HouseSpec::Get(house_id);
+	uint32 old_population = hs->population;
 
 	/* If the lift has a destination, it is already an animated tile. */
 	if ((hs->building_flags & BUILDING_IS_ANIMATED) &&
@@ -528,7 +532,19 @@ static void TileLoop_Town(TileIndex tile)
 		ClearTownHouse(t, tile);
 
 		/* Rebuild with another house? */
-		if (GB(r, 24, 8) >= 12) BuildTownHouse(t, tile);
+		if (GB(r, 24, 8) >= 12) {
+			if (BuildTownHouse(t, tile)) {
+				if (_switch_mode == SM_NONE) {
+					// notify about house population change
+					HouseID new_house_id = GetHouseType(tile);
+					const HouseSpec *new_hs = HouseSpec::Get(new_house_id);
+					uint32 new_population = new_hs->population;
+
+					// SAIHook OnHouseRebuild
+					SAI::InvokeCallback("OnHouseRebuild", "iiii", t->index, tile, old_population, new_population);
+				}				
+			}
+		}
 	}
 
 	cur_company.Restore();
@@ -931,6 +947,10 @@ static bool GrowTownWithExtraHouse(Town *t, TileIndex tile)
 		/* If there are enough neighbors stop here */
 		if (counter >= 3) {
 			if (BuildTownHouse(t, tile)) {
+				if (_switch_mode == SM_NONE) {
+					// SAIHook OnHouseBuild
+					SAI::InvokeCallback("OnHouseBuild", "ii", t->index, tile);
+				}
 				_grow_town_result = GROWTH_SUCCEED;
 				return true;
 			}
@@ -1168,6 +1188,10 @@ static void GrowTownInTile(TileIndex *tile_ptr, RoadBits cur_rb, DiagDirection t
 				/* And build a house.
 				 * Set result to -1 if we managed to build it. */
 				if (BuildTownHouse(t1, house_tile)) {
+					if (_switch_mode == SM_NONE) {
+						// SAIHook OnHouseBuild
+						SAI::InvokeCallback("OnHouseBuild", "ii", t1->index, house_tile);
+					}
 					_grow_town_result = GROWTH_SUCCEED;
 				}
 			}
@@ -2293,6 +2317,12 @@ void ClearTownHouse(Town *t, TileIndex tile)
 	/* Remove population from the town if the house is finished. */
 	if (IsHouseCompleted(tile)) {
 		ChangePopulation(t, -hs->population);
+
+		// warnings for other players if someone touches towns
+		if (_current_company != OWNER_TOWN && _current_company != OWNER_NONE && _switch_mode == SM_NONE) {
+			//SAIHook OnHouseDestroyed
+			SAI::InvokeCallback("OnHouseDestroyed", "iii", _current_company, t->index, hs->population);
+		}
 	}
 
 	t->num_houses--;

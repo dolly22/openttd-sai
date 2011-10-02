@@ -44,6 +44,7 @@
 bool _ddc_fastforward = true;
 #endif /* DEBUG_DUMP_COMMANDS */
 
+#include "../sai/sai.hpp"
 assert_compile(NetworkClientInfoPool::MAX_SIZE == NetworkClientSocketPool::MAX_SIZE);
 
 NetworkClientInfoPool _networkclientinfo_pool("NetworkClientInfo");
@@ -493,6 +494,7 @@ void ParseConnectionString(const char **company, const char **port, char *connec
  */
 static void InitializeNetworkPools(bool close_admins = true)
 {
+
 	_networkclientsocket_pool.CleanPool();
 	_networkclientinfo_pool.CleanPool();
 	if (close_admins) _networkadminsocket_pool.CleanPool();
@@ -698,6 +700,9 @@ bool NetworkServerStart()
 	IConsoleCmdExec("exec scripts/pre_server.scr 0");
 	if (_network_dedicated) IConsoleCmdExec("exec scripts/pre_dedicated.scr 0");
 
+	// SAIHook OnServerStarting
+	SAI::InvokeCallback("OnServerStarting");
+
 	NetworkDisconnect(false, false);
 	NetworkInitialize(false);
 	if (!ServerNetworkGameSocketHandler::Listen(_settings_client.network.server_port)) return false;
@@ -721,6 +726,9 @@ bool NetworkServerStart()
 	_network_company_passworded = 0;
 
 	NetworkInitGameInfo();
+
+	// SAHook OnServerStarted
+	SAI::InvokeCallback("OnServerStarted");
 
 	/* execute server initialization script */
 	IConsoleCmdExec("exec scripts/on_server.scr 0");
@@ -834,6 +842,33 @@ void NetworkUDPGameLoop()
 		if (_network_udp_broadcast > 0) _network_udp_broadcast--;
 	}
 }
+
+uint32 _frame_week_fract;
+uint32 _frame_date_fract;
+
+void NetworkServer_CheckTick()
+{
+    uint32 iddle_days;
+
+    _frame_date_fract++;
+    if (_frame_date_fract == DAY_TICKS)
+    {
+		_frame_week_fract++;
+        _frame_date_fract = 0;
+
+		if (_frame_week_fract == 7) 
+		{
+			_frame_week_fract = 0;
+			// run weekly scripts on paused games
+
+			if (_pause_mode == PM_PAUSED_NORMAL) {
+				// SAIHook OnPausedWeeklyLoop
+				SAI::InvokeCallback("OnPausedWeeklyLoop");
+			}
+		}
+	}
+}
+
 
 /* The main loop called from ttd.c
  *  Here we also have to do StateGameLoop if needed! */
@@ -959,6 +994,7 @@ void NetworkGameLoop()
 		}
 
 		NetworkExecuteLocalCommandQueue();
+		NetworkServer_CheckTick();
 
 		/* Then we make the frame */
 		StateGameLoop();

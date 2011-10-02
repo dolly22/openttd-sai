@@ -60,6 +60,9 @@ CommandCost CmdPlaceSign(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 
 		si->UpdateVirtCoord();
 		InvalidateWindowData(WC_SIGN_LIST, 0, 0);
 		_new_sign_id = si->index;
+
+		// SAIHook OnNewSign
+		SAI::InvokeCallback("OnSignBuild", "iiiis", _current_company, si->index, p1, p2, text);
 	}
 
 	return CommandCost();

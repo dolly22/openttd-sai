@@ -60,6 +60,7 @@ void NetworkHandlePauseChange(PauseMode prev_mode, PauseMode changed_mode);
 
 /*** Commands ran by the server ***/
 void NetworkServerDailyLoop();
+void NetworkServerWeeklyLoop();
 void NetworkServerMonthlyLoop();
 void NetworkServerYearlyLoop();
 void NetworkServerSendConfigUpdate();
