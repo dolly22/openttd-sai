@@ -129,10 +129,10 @@ const char *NetworkAddress::GetAnonymizedAddressAsString()
 		// 128bit hash (there will be many conflits, change when there is time)
 		IN6_ADDR *ipv6 = &((struct sockaddr_in6*)&this->address)->sin6_addr;
 		uint32 ipv6part = ipv6->u.Byte[0] | ipv6->u.Byte[15] << 8 | ipv6->u.Byte[14] << 16 | ipv6->u.Byte[1] << 24;
-		snprintf(buf, sizeof(buf), "[%x]", Hash32bit(ipv6part));
+		seprintf(buf, lastof(buf), "[%x]", Hash32bit(ipv6part));
 	} else if (this->GetAddress()->ss_family == AF_INET) {
 		// 32bit hash
-		snprintf(buf, sizeof(buf), "[%x]", Hash32bit(*(uint32*)&((struct sockaddr_in*)&this->address)->sin_addr.s_addr));
+		seprintf(buf, lastof(buf), "[%x]", Hash32bit(*(uint32*)&((struct sockaddr_in*)&this->address)->sin_addr.s_addr));
 	}
 	return buf;
 }

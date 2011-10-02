@@ -32,6 +32,9 @@ struct NetworkClientInfo : NetworkClientInfoPool::PoolItem<&_networkclientinfo_p
 	bool is_admin;									///< Is this client marked as admin
 	bool is_moderator;								///< Is this client marked as moderator
 
+	bool hostname_resolved;							///< Is hostname resolved?
+	char hostname[NETWORK_HOSTNAME_LENGTH];			///< Client resolved hostname
+
 	NetworkClientInfo(ClientID client_id = INVALID_CLIENT_ID) : client_id(client_id) {}
 	~NetworkClientInfo();
 

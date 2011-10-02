@@ -18,6 +18,7 @@
 #include "network_server.h"
 #include "network_udp.h"
 #include "network_base.h"
+#include "async_dns.h"
 #include "../console_func.h"
 #include "../company_base.h"
 #include "../command_func.h"
@@ -850,6 +851,9 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_JOIN)
 	ci->client_lang = client_lang;
 	DEBUG(desync, 1, "client: %08x; %02x; %02x; %04x", _date, _date_fract, (int)ci->client_playas, ci->index);
 
+	// check if hostname already resolved
+	ADNS_UpdateResolved(ci);
+
 	// SAIHook OnClientJoining
 	int client_join_send_error;		
 	if (SAI::InvokeIntegerCallback("OnClientJoining", &client_join_send_error, "i", ci->client_id))
@@ -859,6 +863,38 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_JOIN)
 			return this->SendError((NetworkErrorCode)client_join_send_error);
 		}
 	}
+
+    char buf[1024];
+	const char* host_name = NetworkGetHostNameTag(ci);
+
+	switch (playas) {
+		case COMPANY_NEW_COMPANY: /* New company */
+			seprintf(buf, lastof(buf), "%s (%s) is promoting a new company", ci->client_name, host_name);
+			NetworkServerSendChat(NETWORK_ACTION_CHAT, DESTTYPE_BROADCAST, 0, buf, CLIENT_ID_SERVER, NULL);
+            break;
+
+        case COMPANY_SPECTATOR: /* Spectator */
+			seprintf(buf, lastof(buf), "%s (%s) is joining as spectator", ci->client_name, host_name); 
+			NetworkServerSendChat(NETWORK_ACTION_CHAT, DESTTYPE_BROADCAST, 0, buf, CLIENT_ID_SERVER, NULL);
+            break;
+
+        default:
+	        /* Make sure companies to which people try to join are not autocleaned */
+			if (::Company::IsValidID(playas))
+            {				
+                // report joining company
+				Company *c = ::Company::Get(playas);
+
+				char company_name[64];
+
+				::SetDParam(0, c->index);
+				::GetString(company_name, STR_COMPANY_NAME, &company_name[64 - 1]);
+
+				seprintf(buf, lastof(buf), "%s (%s) is joining company %s", ci->client_name, host_name, company_name); 
+				NetworkServerSendChat(NETWORK_ACTION_CHAT, DESTTYPE_BROADCAST, 0, buf, CLIENT_ID_SERVER, NULL);
+            }
+            break;
+    }
 
 	/* Make sure companies to which people try to join are not autocleaned */
 	if (Company::IsValidID(playas)) _network_company_states[playas].months_empty = 0;
@@ -996,6 +1032,9 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_MAP_OK)
 
 		/* also update the new client with our max values */
 		this->SendConfigUpdate();
+
+		// check if hostname already resolved
+		ADNS_UpdateResolved(this->GetInfo());
 
 		// SAIHook OnClientJoined
 		SAI::InvokeCallback("OnClientJoined", "i", this->client_id);
@@ -1737,6 +1776,10 @@ void NetworkServer_Tick(bool send_frame)
 		send_sync = true;
 	}
 #endif
+	if (_frame_counter >= _last_dns_frame + 3) {
+		_last_dns_frame = _frame_counter;
+		ADNS_Process();
+	}
 
 	/* Now we are done with the frame, inform the clients that they can
 	 *  do their frame! */
@@ -2127,6 +2170,39 @@ void NetworkPrintClients()
 				ci->client_playas + (Company::IsValidID(ci->client_playas) ? 1 : 0),
 				_network_server ? (ci->client_id == CLIENT_ID_SERVER ? "server" : NetworkClientSocket::GetByClientID(ci->client_id)->GetClientIP()) : "");
 	}
+}
+
+const char* NetworkGetHostNameTag(NetworkClientInfo *ci)
+{
+	static char buffer[1024];
+	if (ci->hostname_resolved)
+	{
+		// format using hostname hash.some.domain.com
+		char *hostname = ci->hostname;
+
+		char *first_dot = strchr(hostname, '.');
+		if (first_dot != NULL)
+		{
+			hostname = first_dot + 1;
+			if (strchr(hostname, '.') == NULL)
+				hostname = ci->hostname;
+		}
+		seprintf(buffer, lastof(buffer), "%s.%s", NetworkClientSocket::GetByClientID(ci->client_id)->client_address.GetAnonymizedAddressAsString(), hostname);	
+	}
+	else
+	{
+		const sockaddr_storage *addr = NetworkClientSocket::GetByClientID(ci->client_id)->client_address.GetAddress();
+
+		if (addr->ss_family == AF_INET) {
+			// 32bit hash
+			long client_ip = *(uint32*)&((struct sockaddr_in*)addr)->sin_addr.s_addr;
+			seprintf(buffer, lastof(buffer), "%d.%d.%d.%s", client_ip & 0xff, client_ip >> 8 & 0xff, client_ip >> 16 & 0xff, NetworkClientSocket::GetByClientID(ci->client_id)->client_address.GetAnonymizedAddressAsString());
+		} else {
+			const char* anonymized = NetworkClientSocket::GetByClientID(ci->client_id)->client_address.GetAnonymizedAddressAsString();
+			seprintf(buffer, lastof(buffer), "%s", anonymized);
+		}
+	}
+	return buffer;
 }
 
 #endif /* ENABLE_NETWORK */

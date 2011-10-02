@@ -34,17 +34,20 @@ void SQSAIClient_Register(Squirrel *engine)
 	SQSAIClient.DefSQConst(engine, SAIClient::CLIENT_ID_SERVER,  "CLIENT_ID_SERVER");
 	SQSAIClient.DefSQConst(engine, SAIClient::CLIENT_ID_FIRST,   "CLIENT_ID_FIRST");
 
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsValid,              "IsValid",              2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsAdmin,              "IsAdmin",              2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetAdmin,             "SetAdmin",             3, ".ib");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsModerator,          "IsModerator",          2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetModerator,         "SetModerator",         3, ".ib");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetName,              "GetName",              2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetCompany,           "GetCompany",           2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAddress,           "GetAddress",           2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAnonymizedAddress, "GetAnonymizedAddress", 2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetJoinedDate,        "GetJoinedDate",        2, ".i");
-	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::Disconnect,           "Disconnect",           3, ".ii");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsValid,               "IsValid",               2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsAdmin,               "IsAdmin",               2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetAdmin,              "SetAdmin",              3, ".ib");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsModerator,           "IsModerator",           2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetModerator,          "SetModerator",          3, ".ib");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetName,               "GetName",               2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetCompany,            "GetCompany",            2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAddress,            "GetAddress",            2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAnonymizedAddress,  "GetAnonymizedAddress",  2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetJoinedDate,         "GetJoinedDate",         2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::Disconnect,            "Disconnect",            3, ".ii");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsHostNameResolved,    "IsHostNameResolved",    2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetHostName,           "GetHostName",           2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAnonymizedHostName, "GetAnonymizedHostName", 2, ".i");
 
 	SQSAIClient.PostRegister(engine);
 }

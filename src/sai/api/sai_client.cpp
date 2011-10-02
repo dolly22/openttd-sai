@@ -129,3 +129,47 @@
 	NetworkClientSocket::GetByClientID((::ClientID)client_id)->SendError((::NetworkErrorCode)status);
 }
 
+/* static */ bool SAIClient::IsHostNameResolved(SAIClient::ClientID client_id)
+{
+	NetworkClientInfo *ci;
+
+	ci = NetworkClientInfo::GetByClientID((::ClientID)client_id);		
+	if (ci == NULL)
+		return NULL;
+
+	return ci->hostname_resolved;
+}
+
+/* static */ char* SAIClient::GetHostName(SAIClient::ClientID client_id)
+{
+	NetworkClientInfo *ci;
+
+	ci = NetworkClientInfo::GetByClientID((::ClientID)client_id);		
+	if (ci == NULL)
+		return NULL;
+
+	if (ci == NULL || !ci->hostname_resolved)
+		return NULL;
+
+	char *client_hostname = MallocT<char>(strlen(ci->hostname) + 1);
+	ttd_strlcpy(client_hostname, ci->hostname, strlen(ci->hostname) + 1);
+
+	return client_hostname;
+}
+
+/* static */ char* SAIClient::GetAnonymizedHostName(SAIClient::ClientID client_id)
+{
+	NetworkClientInfo *ci;
+
+	ci = NetworkClientInfo::GetByClientID((::ClientID)client_id);		
+	if (ci == NULL)
+		return NULL;
+
+	const char* hostname = NetworkGetHostNameTag(ci);
+
+	char *client_hostname = MallocT<char>(strlen(hostname) + 1);
+ 	ttd_strlcpy(client_hostname, hostname, strlen(hostname) + 1);
+
+	return client_hostname;
+}
+

@@ -23,6 +23,7 @@
 #include "network_udp.h"
 #include "network_gamelist.h"
 #include "network_base.h"
+#include "async_dns.h"
 #include "core/udp.h"
 #include "core/host.h"
 #include "network_gui.h"
@@ -69,6 +70,7 @@ StringList _network_ban_list;
 uint32 _frame_counter_server; // The frame_counter of the server, if in network-mode
 uint32 _frame_counter_max; // To where we may go with our clients
 uint32 _frame_counter;
+uint32 _last_dns_frame; // Last time async DNS was processed
 uint32 _last_sync_frame; // Used in the server to store the last time a sync packet was sent to clients.
 NetworkAddressList _broadcast_list;
 uint32 _sync_seed_1;
@@ -489,6 +491,8 @@ void ParseConnectionString(const char **company, const char **port, char *connec
 	SetWindowDirty(WC_CLIENT_LIST, 0);
 	ServerNetworkGameSocketHandler *cs = new ServerNetworkGameSocketHandler(s);
 	cs->client_address = address; // Save the IP of the client
+
+	ADNS_Submit((NetworkAddress*)&address);
 }
 
 /**
@@ -723,6 +727,7 @@ bool NetworkServerStart()
 	_frame_counter_server = 0;
 	_frame_counter_max = 0;
 	_last_sync_frame = 0;
+	_last_dns_frame = 0;
 	_network_own_client_id = CLIENT_ID_SERVER;
 
 	_network_clients_connected = 0;

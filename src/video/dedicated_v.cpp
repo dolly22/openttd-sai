@@ -16,6 +16,7 @@
 #include "../gfx_func.h"
 #include "../network/network.h"
 #include "../network/network_internal.h"
+#include "../network/async_dns.h"
 #include "../console_func.h"
 #include "../genworld.h"
 #include "../fileio_type.h"
@@ -266,6 +267,9 @@ void VideoDriver_Dedicated::MainLoop()
 	signal(SIGQUIT, DedicatedSignalHandler);
 #endif
 
+	// Async dns resolver initialize
+	ADNS_Init();
+
 	/* Load the dedicated server stuff */
 	_is_network_server = true;
 	_network_dedicated = true;
@@ -322,6 +326,9 @@ void VideoDriver_Dedicated::MainLoop()
 
 	// uninitialize Server AI
 	SAI::Uninitialize();
+
+	// close async DNS resolver
+	ADNS_Close();
 }
 
 #endif /* ENABLE_NETWORK */

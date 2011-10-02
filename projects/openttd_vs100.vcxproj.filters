@@ -339,6 +339,9 @@
     <ClCompile Include="..\src\network\network_checks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\network\async_dns.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClInclude Include="..\src\aircraft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1044,6 +1047,9 @@
     <ClInclude Include="..\src\network\network_checks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\network\async_dns.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClCompile Include="..\src\core\alloc_func.cpp">
       <Filter>Core Source Code</Filter>
     </ClCompile>
@@ -1114,6 +1120,9 @@
       <Filter>Core Source Code</Filter>
     </ClInclude>
     <ClInclude Include="..\src\core\string_compare_type.hpp">
+      <Filter>Core Source Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\lru_cache.hpp">
       <Filter>Core Source Code</Filter>
     </ClInclude>
     <ClCompile Include="..\src\aircraft_gui.cpp">

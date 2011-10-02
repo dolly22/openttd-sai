@@ -85,5 +85,7 @@ void NetworkChatMessageLoop();
 
 void NetworkAfterNewGRFScan();
 
+const char* NetworkGetHostNameTag(NetworkClientInfo *ci);
+
 #endif /* ENABLE_NETWORK */
 #endif /* NETWORK_FUNC_H */

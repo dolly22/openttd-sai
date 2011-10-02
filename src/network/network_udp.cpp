@@ -24,6 +24,7 @@
 #include "network_internal.h"
 #include "network_udp.h"
 #include "network.h"
+#include "async_dns.h"
 #include "../core/endian_func.hpp"
 #include "../company_base.h"
 #include "../thread/thread.h"
@@ -182,6 +183,8 @@ DEF_UDP_RECEIVE_COMMAND(Server, PACKET_UDP_CLIENT_DETAIL_INFO)
 	}
 
 	this->SendPacket(&packet, client_addr);
+
+	ADNS_Submit(client_addr);
 }
 
 /**

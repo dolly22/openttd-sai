@@ -74,6 +74,21 @@ public:
 	*/
 	static void Disconnect(SAIClient::ClientID client_id, uint32 status);
 
+	/*
+	** check if hostname is resolved
+	*/
+	static bool IsHostNameResolved(SAIClient::ClientID client_id);
+
+	/*
+	** Get host name
+	*/
+	static char* GetHostName(SAIClient::ClientID client_id);
+
+	/*
+	** Get anonymized host name
+	*/
+	static char* GetAnonymizedHostName(SAIClient::ClientID client_id);
+
 private:
 
 };
