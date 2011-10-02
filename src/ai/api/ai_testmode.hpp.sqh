@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_TESTMODE_HPP_SQH
+#define AI_TESTMODE_HPP_SQH
+
+#include "ai_testmode.hpp"
+
+namespace SQConvert {
+	/* Allow AITestMode to be used as Squirrel parameter */
+	template <> AITestMode *GetParam(ForceType<AITestMode *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AITestMode &GetParam(ForceType<AITestMode &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITestMode *GetParam(ForceType<const AITestMode *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITestMode &GetParam(ForceType<const AITestMode &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITestMode *>(HSQUIRRELVM vm, AITestMode *res);
+}; // namespace SQConvert
+
+void SQAITestMode_Register(Squirrel *engine);
+
+#endif  /* AI_TESTMODE_HPP_SQH */

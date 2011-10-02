@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_EXECMODE_HPP_SQH
+#define AI_EXECMODE_HPP_SQH
+
+#include "ai_execmode.hpp"
+
+namespace SQConvert {
+	/* Allow AIExecMode to be used as Squirrel parameter */
+	template <> AIExecMode *GetParam(ForceType<AIExecMode *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIExecMode &GetParam(ForceType<AIExecMode &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIExecMode *GetParam(ForceType<const AIExecMode *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIExecMode &GetParam(ForceType<const AIExecMode &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIExecMode *>(HSQUIRRELVM vm, AIExecMode *res);
+}; // namespace SQConvert
+
+void SQAIExecMode_Register(Squirrel *engine);
+
+#endif  /* AI_EXECMODE_HPP_SQH */

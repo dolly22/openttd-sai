@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_BASESTATION_HPP_SQH
+#define AI_BASESTATION_HPP_SQH
+
+#include "ai_basestation.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIBaseStation::SpecialStationIDs GetParam(ForceType<AIBaseStation::SpecialStationIDs>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIBaseStation::SpecialStationIDs>(HSQUIRRELVM vm, AIBaseStation::SpecialStationIDs res);
+
+	/* Allow AIBaseStation to be used as Squirrel parameter */
+	template <> AIBaseStation *GetParam(ForceType<AIBaseStation *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIBaseStation &GetParam(ForceType<AIBaseStation &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBaseStation *GetParam(ForceType<const AIBaseStation *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBaseStation &GetParam(ForceType<const AIBaseStation &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIBaseStation *>(HSQUIRRELVM vm, AIBaseStation *res);
+}; // namespace SQConvert
+
+void SQAIBaseStation_Register(Squirrel *engine);
+
+#endif  /* AI_BASESTATION_HPP_SQH */

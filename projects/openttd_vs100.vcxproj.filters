@@ -94,6 +94,12 @@
     <Filter Include="SAI Core">
       <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SAI API">
+      <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SAI API Implementation">
+      <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000032}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\airport.cpp">
@@ -2544,6 +2550,66 @@
     <ClInclude Include="..\src\sai\sai_controller.hpp">
       <Filter>SAI Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_client.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_clientlist.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_company.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_companylist.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_gamesettings.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_industry.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_server.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_sign.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_tile.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_town.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\sai\api\sai_client.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_clientlist.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_company.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_companylist.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_gamesettings.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_industry.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_server.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_sign.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_tile.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_town.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

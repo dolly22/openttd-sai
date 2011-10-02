@@ -103,6 +103,16 @@ public:
 	const char *GetHostname();
 	void GetAddressAsString(char *buffer, const char *last, bool with_family = true);
 	const char *GetAddressAsString(bool with_family = true);
+
+	/**
+	 * Get anonymized address string (hash of address)
+	 */
+	const char *GetAnonymizedAddressAsString();
+
+	/**
+	 * Get the address in it's internal representation.
+	 * @return the address
+	 */
 	const sockaddr_storage *GetAddress();
 
 	/**

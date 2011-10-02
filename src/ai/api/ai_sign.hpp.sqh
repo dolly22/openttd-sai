@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_SIGN_HPP_SQH
+#define AI_SIGN_HPP_SQH
+
+#include "ai_sign.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AISign::ErrorMessages GetParam(ForceType<AISign::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISign::ErrorMessages>(HSQUIRRELVM vm, AISign::ErrorMessages res);
+
+	/* Allow AISign to be used as Squirrel parameter */
+	template <> AISign *GetParam(ForceType<AISign *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AISign &GetParam(ForceType<AISign &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISign *GetParam(ForceType<const AISign *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISign &GetParam(ForceType<const AISign &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISign *>(HSQUIRRELVM vm, AISign *res);
+}; // namespace SQConvert
+
+void SQAISign_Register(Squirrel *engine);
+
+#endif  /* AI_SIGN_HPP_SQH */

@@ -1,0 +1,30 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_clientlist.hpp"
+
+namespace SQConvert {
+	/* Allow SAIClientList to be used as Squirrel parameter */
+	template <> SAIClientList *GetParam(ForceType<SAIClientList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIClientList *)instance; }
+	template <> SAIClientList &GetParam(ForceType<SAIClientList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIClientList *)instance; }
+	template <> const SAIClientList *GetParam(ForceType<const SAIClientList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIClientList *)instance; }
+	template <> const SAIClientList &GetParam(ForceType<const SAIClientList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIClientList *)instance; }
+	template <> int Return<SAIClientList *>(HSQUIRRELVM vm, SAIClientList *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAIClientList", res, NULL, DefSQDestructorCallback<SAIClientList>); return 1; }
+} // namespace SQConvert
+
+void SQSAIClientList_Register(Squirrel *engine)
+{
+	DefSQClass <SAIClientList> SQSAIClientList("SAIClientList");
+	SQSAIClientList.PreRegister(engine, "AIList");
+	SQSAIClientList.AddConstructor<void (SAIClientList::*)(), 1>(engine, "x");
+
+	SQSAIClientList.PostRegister(engine);
+}

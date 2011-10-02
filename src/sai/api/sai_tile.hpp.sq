@@ -1,0 +1,46 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_tile.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> SAITile::TropicZone GetParam(ForceType<SAITile::TropicZone>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (SAITile::TropicZone)tmp; }
+	template <> int Return<SAITile::TropicZone>(HSQUIRRELVM vm, SAITile::TropicZone res) { sq_pushinteger(vm, (int32)res); return 1; }
+
+	/* Allow SAITile to be used as Squirrel parameter */
+	template <> SAITile *GetParam(ForceType<SAITile *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAITile *)instance; }
+	template <> SAITile &GetParam(ForceType<SAITile &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAITile *)instance; }
+	template <> const SAITile *GetParam(ForceType<const SAITile *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAITile *)instance; }
+	template <> const SAITile &GetParam(ForceType<const SAITile &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAITile *)instance; }
+	template <> int Return<SAITile *>(HSQUIRRELVM vm, SAITile *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAITile", res, NULL, DefSQDestructorCallback<SAITile>); return 1; }
+} // namespace SQConvert
+
+void SQSAITile_Register(Squirrel *engine)
+{
+	DefSQClass <SAITile> SQSAITile("SAITile");
+	SQSAITile.PreRegister(engine);
+	SQSAITile.AddConstructor<void (SAITile::*)(), 1>(engine, "x");
+
+	SQSAITile.DefSQConst(engine, SAITile::TROPICZONE_NORMAL,     "TROPICZONE_NORMAL");
+	SQSAITile.DefSQConst(engine, SAITile::TROPICZONE_DESERT,     "TROPICZONE_DESERT");
+	SQSAITile.DefSQConst(engine, SAITile::TROPICZONE_RAINFOREST, "TROPICZONE_RAINFOREST");
+	SQSAITile.DefSQConst(engine, SAITile::TROPICZONE_UNKNKOWN,   "TROPICZONE_UNKNKOWN");
+
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::GetTropicZone,                       "GetTropicZone",                       2, ".i");
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::GetAmountOfCompetitorStationsAround, "GetAmountOfCompetitorStationsAround", 5, ".iiii");
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::GetRawTileX,                         "GetRawTileX",                         2, ".i");
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::GetRawTileY,                         "GetRawTileY",                         2, ".i");
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::IsIndustryTile,                      "IsIndustryTile",                      2, ".i");
+	SQSAITile.DefSQStaticMethod(engine, &SAITile::GetIndustryIndexForTile,             "GetIndustryIndexForTile",             2, ".i");
+
+	SQSAITile.PostRegister(engine);
+}

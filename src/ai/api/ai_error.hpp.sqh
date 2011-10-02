@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_ERROR_HPP_SQH
+#define AI_ERROR_HPP_SQH
+
+#include "ai_error.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIError::ErrorCategories GetParam(ForceType<AIError::ErrorCategories>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIError::ErrorCategories>(HSQUIRRELVM vm, AIError::ErrorCategories res);
+	template <> AIError::ErrorMessages GetParam(ForceType<AIError::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIError::ErrorMessages>(HSQUIRRELVM vm, AIError::ErrorMessages res);
+
+	/* Allow AIError to be used as Squirrel parameter */
+	template <> AIError *GetParam(ForceType<AIError *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIError &GetParam(ForceType<AIError &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIError *GetParam(ForceType<const AIError *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIError &GetParam(ForceType<const AIError &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIError *>(HSQUIRRELVM vm, AIError *res);
+}; // namespace SQConvert
+
+void SQAIError_Register(Squirrel *engine);
+
+#endif  /* AI_ERROR_HPP_SQH */

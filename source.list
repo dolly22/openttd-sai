@@ -1017,3 +1017,26 @@ sai/sai_scanner.hpp
 sai/sai_controller.cpp
 sai/sai_controller.hpp
 
+# SAI API
+sai/api/sai_client.hpp
+sai/api/sai_clientlist.hpp
+sai/api/sai_company.hpp
+sai/api/sai_companylist.hpp
+sai/api/sai_gamesettings.hpp
+sai/api/sai_industry.hpp
+sai/api/sai_server.hpp
+sai/api/sai_sign.hpp
+sai/api/sai_tile.hpp
+sai/api/sai_town.hpp
+
+# SAI API Implementation
+sai/api/sai_client.cpp
+sai/api/sai_clientlist.cpp
+sai/api/sai_company.cpp
+sai/api/sai_companylist.cpp
+sai/api/sai_gamesettings.cpp
+sai/api/sai_industry.cpp
+sai/api/sai_server.cpp
+sai/api/sai_sign.cpp
+sai/api/sai_tile.cpp
+sai/api/sai_town.cpp

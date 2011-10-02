@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_COMPANY_HPP_SQH
+#define AI_COMPANY_HPP_SQH
+
+#include "ai_company.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AICompany::CompanyID GetParam(ForceType<AICompany::CompanyID>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICompany::CompanyID>(HSQUIRRELVM vm, AICompany::CompanyID res);
+	template <> AICompany::Gender GetParam(ForceType<AICompany::Gender>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICompany::Gender>(HSQUIRRELVM vm, AICompany::Gender res);
+
+	/* Allow AICompany to be used as Squirrel parameter */
+	template <> AICompany *GetParam(ForceType<AICompany *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AICompany &GetParam(ForceType<AICompany &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICompany *GetParam(ForceType<const AICompany *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICompany &GetParam(ForceType<const AICompany &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICompany *>(HSQUIRRELVM vm, AICompany *res);
+}; // namespace SQConvert
+
+void SQAICompany_Register(Squirrel *engine);
+
+#endif  /* AI_COMPANY_HPP_SQH */

@@ -136,7 +136,7 @@ Money CalculateCompanyValue(const Company *c, bool including_loan)
 	return max(value, (Money)1);
 }
 
-/**
+Money CalculateCompanyNCV(const Company* c){	Owner owner = c->index;	Money value = 0;	Station *st;	uint num = 0;	FOR_ALL_STATIONS(st) {		if (st->owner == owner) num += CountBits((byte)st->facilities);	}	Vehicle *v;	FOR_ALL_VEHICLES(v) {		if (v->owner != owner) continue;		if (v->type == VEH_TRAIN ||				v->type == VEH_ROAD ||				(v->type == VEH_AIRCRAFT &&  Aircraft::From(v)->IsNormalAircraft()) ||				v->type == VEH_SHIP) {			value += v->value;		}	}	/* Add real money value */	value -= c->current_loan;	value += c->money;	return max(value, (Money)1);}/**
  * if update is set to true, the economy is updated with this score
  *  (also the house is updated, should only be true in the on-tick event)
  * @param update the economy with calculated score

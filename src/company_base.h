@@ -80,6 +80,9 @@ struct CompanyProperties {
 	 * @note It is possible that the user is also participating in such a company.
 	 */
 	bool is_ai;
+	bool is_suspended;		// are company actions currently suspended?
+	bool is_protected;		// is company protected from autoclean?
+
 	// SA universal company storage...
 	uint32 sa_storage[SAI_COMPANY_STORAGE_SIZE];
 
@@ -117,7 +120,7 @@ struct Company : CompanyPool::PoolItem<&_company_pool>, CompanyProperties {
 	 * @return \c true if it is a valid, computer controlled company, else \c false.
 	 */
 	static FORCEINLINE bool IsValidAiID(size_t index)
-	{
+	{	
 		const Company *c = Company::GetIfValid(index);
 		return c != NULL && c->is_ai;
 	}
@@ -153,8 +156,10 @@ struct Company : CompanyPool::PoolItem<&_company_pool>, CompanyProperties {
 #define FOR_ALL_COMPANIES(var) FOR_ALL_COMPANIES_FROM(var, 0)
 
 Money CalculateCompanyValue(const Company *c, bool including_loan = true);
+Money CalculateCompanyNCV(const Company* p);
 
 extern uint _next_competitor_start;
 extern uint _cur_company_tick_index;
+
 
 #endif /* COMPANY_BASE_H */

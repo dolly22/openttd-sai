@@ -213,7 +213,7 @@ BEGIN {
 	print "void SQ" cls "_Register(Squirrel *engine)"
 	print "{"
 	print "	DefSQClass <" cls "> SQ" cls "(\"" cls "\");"
-	if (super_cls == "AIObject" || super_cls == "AIAbstractList::Valuator") {
+	if (super_cls == "AIObject" || super_cls == "AIAbstractList::Valuator" || super_cls == "SimpleCountedObject") {
 		print "	SQ" cls ".PreRegister(engine);"
 	} else {
 		print "	SQ" cls ".PreRegister(engine, \"" super_cls "\");"

@@ -1,0 +1,44 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_gamesettings.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> SAIGameSettings::SettingType GetParam(ForceType<SAIGameSettings::SettingType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (SAIGameSettings::SettingType)tmp; }
+	template <> int Return<SAIGameSettings::SettingType>(HSQUIRRELVM vm, SAIGameSettings::SettingType res) { sq_pushinteger(vm, (int32)res); return 1; }
+
+	/* Allow SAIGameSettings to be used as Squirrel parameter */
+	template <> SAIGameSettings *GetParam(ForceType<SAIGameSettings *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIGameSettings *)instance; }
+	template <> SAIGameSettings &GetParam(ForceType<SAIGameSettings &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIGameSettings *)instance; }
+	template <> const SAIGameSettings *GetParam(ForceType<const SAIGameSettings *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIGameSettings *)instance; }
+	template <> const SAIGameSettings &GetParam(ForceType<const SAIGameSettings &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIGameSettings *)instance; }
+	template <> int Return<SAIGameSettings *>(HSQUIRRELVM vm, SAIGameSettings *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAIGameSettings", res, NULL, DefSQDestructorCallback<SAIGameSettings>); return 1; }
+} // namespace SQConvert
+
+void SQSAIGameSettings_Register(Squirrel *engine)
+{
+	DefSQClass <SAIGameSettings> SQSAIGameSettings("SAIGameSettings");
+	SQSAIGameSettings.PreRegister(engine);
+	SQSAIGameSettings.AddConstructor<void (SAIGameSettings::*)(), 1>(engine, "x");
+
+	SQSAIGameSettings.DefSQConst(engine, SAIGameSettings::GS_NEWGAME,      "GS_NEWGAME");
+	SQSAIGameSettings.DefSQConst(engine, SAIGameSettings::GS_CURRENT_GAME, "GS_CURRENT_GAME");
+
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::IsValid,        "IsValid",        2, "..");
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::GetBoolValue,   "GetBoolValue",   3, ".i.");
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::GetIntValue,    "GetIntValue",    3, ".i.");
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::GetStringValue, "GetStringValue", 3, ".i.");
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::SetValue,       "SetValue",       4, ".i.i");
+	SQSAIGameSettings.DefSQStaticMethod(engine, &SAIGameSettings::SetStringValue, "SetStringValue", 4, ".i..");
+
+	SQSAIGameSettings.PostRegister(engine);
+}

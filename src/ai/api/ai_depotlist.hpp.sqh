@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_DEPOTLIST_HPP_SQH
+#define AI_DEPOTLIST_HPP_SQH
+
+#include "ai_depotlist.hpp"
+
+namespace SQConvert {
+	/* Allow AIDepotList to be used as Squirrel parameter */
+	template <> AIDepotList *GetParam(ForceType<AIDepotList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIDepotList &GetParam(ForceType<AIDepotList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIDepotList *GetParam(ForceType<const AIDepotList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIDepotList &GetParam(ForceType<const AIDepotList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIDepotList *>(HSQUIRRELVM vm, AIDepotList *res);
+}; // namespace SQConvert
+
+void SQAIDepotList_Register(Squirrel *engine);
+
+#endif  /* AI_DEPOTLIST_HPP_SQH */

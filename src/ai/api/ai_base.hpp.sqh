@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_BASE_HPP_SQH
+#define AI_BASE_HPP_SQH
+
+#include "ai_base.hpp"
+
+namespace SQConvert {
+	/* Allow AIBase to be used as Squirrel parameter */
+	template <> AIBase *GetParam(ForceType<AIBase *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIBase &GetParam(ForceType<AIBase &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBase *GetParam(ForceType<const AIBase *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBase &GetParam(ForceType<const AIBase &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIBase *>(HSQUIRRELVM vm, AIBase *res);
+}; // namespace SQConvert
+
+void SQAIBase_Register(Squirrel *engine);
+
+#endif  /* AI_BASE_HPP_SQH */

@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_SUBSIDYLIST_HPP_SQH
+#define AI_SUBSIDYLIST_HPP_SQH
+
+#include "ai_subsidylist.hpp"
+
+namespace SQConvert {
+	/* Allow AISubsidyList to be used as Squirrel parameter */
+	template <> AISubsidyList *GetParam(ForceType<AISubsidyList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AISubsidyList &GetParam(ForceType<AISubsidyList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISubsidyList *GetParam(ForceType<const AISubsidyList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISubsidyList &GetParam(ForceType<const AISubsidyList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISubsidyList *>(HSQUIRRELVM vm, AISubsidyList *res);
+}; // namespace SQConvert
+
+void SQAISubsidyList_Register(Squirrel *engine);
+
+#endif  /* AI_SUBSIDYLIST_HPP_SQH */

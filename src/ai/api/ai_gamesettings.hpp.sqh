@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_GAMESETTINGS_HPP_SQH
+#define AI_GAMESETTINGS_HPP_SQH
+
+#include "ai_gamesettings.hpp"
+
+namespace SQConvert {
+	/* Allow AIGameSettings to be used as Squirrel parameter */
+	template <> AIGameSettings *GetParam(ForceType<AIGameSettings *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIGameSettings &GetParam(ForceType<AIGameSettings &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGameSettings *GetParam(ForceType<const AIGameSettings *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGameSettings &GetParam(ForceType<const AIGameSettings &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIGameSettings *>(HSQUIRRELVM vm, AIGameSettings *res);
+}; // namespace SQConvert
+
+void SQAIGameSettings_Register(Squirrel *engine);
+
+#endif  /* AI_GAMESETTINGS_HPP_SQH */

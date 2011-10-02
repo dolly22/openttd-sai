@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_MARINE_HPP_SQH
+#define AI_MARINE_HPP_SQH
+
+#include "ai_marine.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIMarine::ErrorMessages GetParam(ForceType<AIMarine::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIMarine::ErrorMessages>(HSQUIRRELVM vm, AIMarine::ErrorMessages res);
+	template <> AIMarine::BuildType GetParam(ForceType<AIMarine::BuildType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIMarine::BuildType>(HSQUIRRELVM vm, AIMarine::BuildType res);
+
+	/* Allow AIMarine to be used as Squirrel parameter */
+	template <> AIMarine *GetParam(ForceType<AIMarine *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIMarine &GetParam(ForceType<AIMarine &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIMarine *GetParam(ForceType<const AIMarine *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIMarine &GetParam(ForceType<const AIMarine &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIMarine *>(HSQUIRRELVM vm, AIMarine *res);
+}; // namespace SQConvert
+
+void SQAIMarine_Register(Squirrel *engine);
+
+#endif  /* AI_MARINE_HPP_SQH */

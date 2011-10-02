@@ -1429,6 +1429,11 @@ static void DoCreateTown(Town *t, TileIndex tile, uint32 townnameparts, TownSize
 	t->act_food = 0;
 	t->act_water = 0;
 
+	t->new_act_goods = 0;
+	t->act_goods = 0;
+	t->new_act_valuables = 0;
+	t->act_valuables = 0;
+
 	// initialize town storage
 	memset(t->sa_storage, 0, sizeof(t->sa_storage));
 
@@ -2804,6 +2809,8 @@ static void UpdateTownAmounts(Town *t)
 	t->act_pass = t->new_act_pass; t->new_act_pass = 0;
 	t->act_food = t->new_act_food; t->new_act_food = 0;
 	t->act_water = t->new_act_water; t->new_act_water = 0;
+	t->act_goods = t->new_act_goods; t->new_act_goods = 0;
+	t->act_valuables = t->new_act_valuables; t->new_act_valuables = 0;
 
 	/* Using +1 here to prevent overflow and division by zero */
 	t->pct_mail_transported = t->new_act_mail * 256 / (t->new_max_mail + 1);

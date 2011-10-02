@@ -1,0 +1,53 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_industry.hpp"
+
+namespace SQConvert {
+	/* Allow SAIIndustry to be used as Squirrel parameter */
+	template <> SAIIndustry *GetParam(ForceType<SAIIndustry *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIIndustry *)instance; }
+	template <> SAIIndustry &GetParam(ForceType<SAIIndustry &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIIndustry *)instance; }
+	template <> const SAIIndustry *GetParam(ForceType<const SAIIndustry *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIIndustry *)instance; }
+	template <> const SAIIndustry &GetParam(ForceType<const SAIIndustry &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIIndustry *)instance; }
+	template <> int Return<SAIIndustry *>(HSQUIRRELVM vm, SAIIndustry *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAIIndustry", res, NULL, DefSQDestructorCallback<SAIIndustry>); return 1; }
+} // namespace SQConvert
+
+void SQSAIIndustry_Register(Squirrel *engine)
+{
+	DefSQClass <SAIIndustry> SQSAIIndustry("SAIIndustry");
+	SQSAIIndustry.PreRegister(engine);
+	SQSAIIndustry.AddConstructor<void (SAIIndustry::*)(), 1>(engine, "x");
+
+	SQSAIIndustry.DefSQStaticMethod(engine, &SAIIndustry::GetFounder,       "GetFounder",       2, ".i");
+	SQSAIIndustry.DefSQStaticMethod(engine, &SAIIndustry::GetWidth,         "GetWidth",         2, ".i");
+	SQSAIIndustry.DefSQStaticMethod(engine, &SAIIndustry::GetHeight,        "GetHeight",        2, ".i");
+	SQSAIIndustry.DefSQStaticMethod(engine, &SAIIndustry::ProspectIndustry, "ProspectIndustry", 2, ".i");
+
+	SQSAIIndustry.PostRegister(engine);
+}
+
+namespace SQConvert {
+	/* Allow SAIIndustryList_PlayerFounded to be used as Squirrel parameter */
+	template <> SAIIndustryList_PlayerFounded *GetParam(ForceType<SAIIndustryList_PlayerFounded *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIIndustryList_PlayerFounded *)instance; }
+	template <> SAIIndustryList_PlayerFounded &GetParam(ForceType<SAIIndustryList_PlayerFounded &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIIndustryList_PlayerFounded *)instance; }
+	template <> const SAIIndustryList_PlayerFounded *GetParam(ForceType<const SAIIndustryList_PlayerFounded *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIIndustryList_PlayerFounded *)instance; }
+	template <> const SAIIndustryList_PlayerFounded &GetParam(ForceType<const SAIIndustryList_PlayerFounded &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIIndustryList_PlayerFounded *)instance; }
+	template <> int Return<SAIIndustryList_PlayerFounded *>(HSQUIRRELVM vm, SAIIndustryList_PlayerFounded *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAIIndustryList_PlayerFounded", res, NULL, DefSQDestructorCallback<SAIIndustryList_PlayerFounded>); return 1; }
+} // namespace SQConvert
+
+void SQSAIIndustryList_PlayerFounded_Register(Squirrel *engine)
+{
+	DefSQClass <SAIIndustryList_PlayerFounded> SQSAIIndustryList_PlayerFounded("SAIIndustryList_PlayerFounded");
+	SQSAIIndustryList_PlayerFounded.PreRegister(engine, "AIList");
+	SQSAIIndustryList_PlayerFounded.AddConstructor<void (SAIIndustryList_PlayerFounded::*)(), 1>(engine, "x");
+
+	SQSAIIndustryList_PlayerFounded.PostRegister(engine);
+}

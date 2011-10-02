@@ -381,7 +381,7 @@ static const void *StringToVal(const SettingDescBase *desc, const char *orig_str
  * @pre SettingDesc is of type SDT_BOOLX, SDT_NUMX,
  * SDT_ONEOFMANY or SDT_MANYOFMANY. Other types are not supported as of now
  */
-static void Write_ValidateSetting(void *ptr, const SettingDesc *sd, int32 val)
+void Write_ValidateSetting(void *ptr, const SettingDesc *sd, int32 val)
 {
 	const SettingDescBase *sdb = &sd->desc;
 

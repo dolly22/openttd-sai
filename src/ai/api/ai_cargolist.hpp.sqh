@@ -1,0 +1,42 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_CARGOLIST_HPP_SQH
+#define AI_CARGOLIST_HPP_SQH
+
+#include "ai_cargolist.hpp"
+
+namespace SQConvert {
+	/* Allow AICargoList to be used as Squirrel parameter */
+	template <> AICargoList *GetParam(ForceType<AICargoList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AICargoList &GetParam(ForceType<AICargoList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList *GetParam(ForceType<const AICargoList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList &GetParam(ForceType<const AICargoList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargoList *>(HSQUIRRELVM vm, AICargoList *res);
+}; // namespace SQConvert
+
+void SQAICargoList_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AICargoList_IndustryAccepting to be used as Squirrel parameter */
+	template <> AICargoList_IndustryAccepting *GetParam(ForceType<AICargoList_IndustryAccepting *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AICargoList_IndustryAccepting &GetParam(ForceType<AICargoList_IndustryAccepting &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList_IndustryAccepting *GetParam(ForceType<const AICargoList_IndustryAccepting *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList_IndustryAccepting &GetParam(ForceType<const AICargoList_IndustryAccepting &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargoList_IndustryAccepting *>(HSQUIRRELVM vm, AICargoList_IndustryAccepting *res);
+}; // namespace SQConvert
+
+void SQAICargoList_IndustryAccepting_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AICargoList_IndustryProducing to be used as Squirrel parameter */
+	template <> AICargoList_IndustryProducing *GetParam(ForceType<AICargoList_IndustryProducing *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AICargoList_IndustryProducing &GetParam(ForceType<AICargoList_IndustryProducing &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList_IndustryProducing *GetParam(ForceType<const AICargoList_IndustryProducing *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargoList_IndustryProducing &GetParam(ForceType<const AICargoList_IndustryProducing &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargoList_IndustryProducing *>(HSQUIRRELVM vm, AICargoList_IndustryProducing *res);
+}; // namespace SQConvert
+
+void SQAICargoList_IndustryProducing_Register(Squirrel *engine);
+
+#endif  /* AI_CARGOLIST_HPP_SQH */

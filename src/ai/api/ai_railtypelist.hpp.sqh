@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_RAILTYPELIST_HPP_SQH
+#define AI_RAILTYPELIST_HPP_SQH
+
+#include "ai_railtypelist.hpp"
+
+namespace SQConvert {
+	/* Allow AIRailTypeList to be used as Squirrel parameter */
+	template <> AIRailTypeList *GetParam(ForceType<AIRailTypeList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIRailTypeList &GetParam(ForceType<AIRailTypeList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRailTypeList *GetParam(ForceType<const AIRailTypeList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRailTypeList &GetParam(ForceType<const AIRailTypeList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRailTypeList *>(HSQUIRRELVM vm, AIRailTypeList *res);
+}; // namespace SQConvert
+
+void SQAIRailTypeList_Register(Squirrel *engine);
+
+#endif  /* AI_RAILTYPELIST_HPP_SQH */

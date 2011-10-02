@@ -1,0 +1,31 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_WAYPOINTLIST_HPP_SQH
+#define AI_WAYPOINTLIST_HPP_SQH
+
+#include "ai_waypointlist.hpp"
+
+namespace SQConvert {
+	/* Allow AIWaypointList to be used as Squirrel parameter */
+	template <> AIWaypointList *GetParam(ForceType<AIWaypointList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIWaypointList &GetParam(ForceType<AIWaypointList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypointList *GetParam(ForceType<const AIWaypointList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypointList &GetParam(ForceType<const AIWaypointList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIWaypointList *>(HSQUIRRELVM vm, AIWaypointList *res);
+}; // namespace SQConvert
+
+void SQAIWaypointList_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIWaypointList_Vehicle to be used as Squirrel parameter */
+	template <> AIWaypointList_Vehicle *GetParam(ForceType<AIWaypointList_Vehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIWaypointList_Vehicle &GetParam(ForceType<AIWaypointList_Vehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypointList_Vehicle *GetParam(ForceType<const AIWaypointList_Vehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypointList_Vehicle &GetParam(ForceType<const AIWaypointList_Vehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIWaypointList_Vehicle *>(HSQUIRRELVM vm, AIWaypointList_Vehicle *res);
+}; // namespace SQConvert
+
+void SQAIWaypointList_Vehicle_Register(Squirrel *engine);
+
+#endif  /* AI_WAYPOINTLIST_HPP_SQH */

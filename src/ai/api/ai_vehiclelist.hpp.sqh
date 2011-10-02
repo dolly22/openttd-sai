@@ -1,0 +1,75 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_VEHICLELIST_HPP_SQH
+#define AI_VEHICLELIST_HPP_SQH
+
+#include "ai_vehiclelist.hpp"
+
+namespace SQConvert {
+	/* Allow AIVehicleList to be used as Squirrel parameter */
+	template <> AIVehicleList *GetParam(ForceType<AIVehicleList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList &GetParam(ForceType<AIVehicleList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList *GetParam(ForceType<const AIVehicleList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList &GetParam(ForceType<const AIVehicleList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList *>(HSQUIRRELVM vm, AIVehicleList *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIVehicleList_Station to be used as Squirrel parameter */
+	template <> AIVehicleList_Station *GetParam(ForceType<AIVehicleList_Station *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList_Station &GetParam(ForceType<AIVehicleList_Station &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Station *GetParam(ForceType<const AIVehicleList_Station *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Station &GetParam(ForceType<const AIVehicleList_Station &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList_Station *>(HSQUIRRELVM vm, AIVehicleList_Station *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_Station_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIVehicleList_Depot to be used as Squirrel parameter */
+	template <> AIVehicleList_Depot *GetParam(ForceType<AIVehicleList_Depot *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList_Depot &GetParam(ForceType<AIVehicleList_Depot &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Depot *GetParam(ForceType<const AIVehicleList_Depot *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Depot &GetParam(ForceType<const AIVehicleList_Depot &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList_Depot *>(HSQUIRRELVM vm, AIVehicleList_Depot *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_Depot_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIVehicleList_SharedOrders to be used as Squirrel parameter */
+	template <> AIVehicleList_SharedOrders *GetParam(ForceType<AIVehicleList_SharedOrders *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList_SharedOrders &GetParam(ForceType<AIVehicleList_SharedOrders &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_SharedOrders *GetParam(ForceType<const AIVehicleList_SharedOrders *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_SharedOrders &GetParam(ForceType<const AIVehicleList_SharedOrders &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList_SharedOrders *>(HSQUIRRELVM vm, AIVehicleList_SharedOrders *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_SharedOrders_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIVehicleList_Group to be used as Squirrel parameter */
+	template <> AIVehicleList_Group *GetParam(ForceType<AIVehicleList_Group *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList_Group &GetParam(ForceType<AIVehicleList_Group &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Group *GetParam(ForceType<const AIVehicleList_Group *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_Group &GetParam(ForceType<const AIVehicleList_Group &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList_Group *>(HSQUIRRELVM vm, AIVehicleList_Group *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_Group_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIVehicleList_DefaultGroup to be used as Squirrel parameter */
+	template <> AIVehicleList_DefaultGroup *GetParam(ForceType<AIVehicleList_DefaultGroup *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicleList_DefaultGroup &GetParam(ForceType<AIVehicleList_DefaultGroup &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_DefaultGroup *GetParam(ForceType<const AIVehicleList_DefaultGroup *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicleList_DefaultGroup &GetParam(ForceType<const AIVehicleList_DefaultGroup &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicleList_DefaultGroup *>(HSQUIRRELVM vm, AIVehicleList_DefaultGroup *res);
+}; // namespace SQConvert
+
+void SQAIVehicleList_DefaultGroup_Register(Squirrel *engine);
+
+#endif  /* AI_VEHICLELIST_HPP_SQH */

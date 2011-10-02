@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_GROUP_HPP_SQH
+#define AI_GROUP_HPP_SQH
+
+#include "ai_group.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIGroup::GroupID GetParam(ForceType<AIGroup::GroupID>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIGroup::GroupID>(HSQUIRRELVM vm, AIGroup::GroupID res);
+
+	/* Allow AIGroup to be used as Squirrel parameter */
+	template <> AIGroup *GetParam(ForceType<AIGroup *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIGroup &GetParam(ForceType<AIGroup &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGroup *GetParam(ForceType<const AIGroup *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGroup &GetParam(ForceType<const AIGroup &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIGroup *>(HSQUIRRELVM vm, AIGroup *res);
+}; // namespace SQConvert
+
+void SQAIGroup_Register(Squirrel *engine);
+
+#endif  /* AI_GROUP_HPP_SQH */

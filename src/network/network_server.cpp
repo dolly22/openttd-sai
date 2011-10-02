@@ -34,6 +34,7 @@
 #include "../core/random_func.hpp"
 #include "../rev.h"
 
+#include "../sai/sai.hpp"
 
 /* This file handles all the server-commands */
 
@@ -290,6 +291,7 @@ NetworkRecvStatus ServerNetworkGameSocketHandler::CloseConnection(NetworkRecvSta
 }
 
 static void NetworkHandleCommandQueue(NetworkClientSocket *cs);
+bool NetworkHandleClientCommand(ClientID client_id, const char *msg);
 
 /***********
  * Sending functions
@@ -838,7 +840,6 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_JOIN)
 		/* We could not create a name for this client */
 		return this->SendError(NETWORK_ERROR_NAME_IN_USE);
 	}
-
 	assert(NetworkClientInfo::CanAllocateItem());
 	NetworkClientInfo *ci = new NetworkClientInfo(this->client_id);
 	this->SetInfo(ci);
@@ -1268,7 +1269,8 @@ void NetworkServerSendChat(NetworkAction action, DestType desttype, int dest, co
 			/* FALL THROUGH */
 		case DESTTYPE_BROADCAST:
 			FOR_ALL_CLIENT_SOCKETS(cs) {
-				cs->SendChat(action, from_id, false, msg, data);
+				if (cs->status == NetworkClientSocket::STATUS_ACTIVE)
+					cs->SendChat(action, from_id, false, msg, data);
 			}
 
 			NetworkAdminChat(action, desttype, from_id, msg, data, from_admin);
@@ -1304,7 +1306,10 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_CHAT)
 		case NETWORK_ACTION_CHAT:
 		case NETWORK_ACTION_CHAT_CLIENT:
 		case NETWORK_ACTION_CHAT_COMPANY:
-			NetworkServerSendChat(action, desttype, dest, msg, this->client_id, data);
+			if (!NetworkHandleClientCommand(ci->client_id, msg))
+			{
+				NetworkServerSendChat(action, desttype, dest, msg, this->client_id, data);
+			}
 			break;
 		default:
 			IConsolePrintF(CC_ERROR, "WARNING: invalid chat action from client %d (IP: %s).", ci->client_id, this->GetClientIP());
@@ -1391,7 +1396,8 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_MOVE)
 	if (company_id != COMPANY_SPECTATOR && !Company::IsValidHumanID(company_id)) return NETWORK_RECV_STATUS_OKAY;
 
 	/* Check if we require a password for this company */
-	if (company_id != COMPANY_SPECTATOR && !StrEmpty(_network_company_states[company_id].password)) {
+	/* Allow admins to join any company without entering password */
+	if (company_id != COMPANY_SPECTATOR && !StrEmpty(_network_company_states[company_id].password) && this->GetInfo()->is_admin == false) {
 		/* we need a password from the client - should be in this packet */
 		char password[NETWORK_PASSWORD_LENGTH];
 		p->Recv_string(password, sizeof(password));
@@ -1566,25 +1572,20 @@ static void NetworkAutoCleanCompanies()
 	FOR_ALL_COMPANIES(c) {
 		/* Skip the non-active once */
 		if (c->is_ai) continue;
+		if (c->is_protected) continue;
 
 		if (!clients_in_company[c->index]) {
 			/* The company is empty for one month more */
 			_network_company_states[c->index].months_empty++;
 
 			/* Is the company empty for autoclean_unprotected-months, and is there no protection? */
-			if (_settings_client.network.autoclean_unprotected != 0 && _network_company_states[c->index].months_empty > _settings_client.network.autoclean_unprotected && StrEmpty(_network_company_states[c->index].password)) {
+			/* Is the company empty for autoclean_protected-months, and there is a protection? */
+			if ((_settings_client.network.autoclean_unprotected != 0 && _network_company_states[c->index].months_empty > _settings_client.network.autoclean_unprotected && StrEmpty(_network_company_states[c->index].password)) 
+				|| (_settings_client.network.autoclean_protected != 0 && _network_company_states[c->index].months_empty > _settings_client.network.autoclean_protected && !StrEmpty(_network_company_states[c->index].password))) {
 				/* Shut the company down */
 				DoCommandP(0, 2 | c->index << 16, 0, CMD_COMPANY_CTRL);
 				NetworkAdminCompanyRemove(c->index, ADMIN_CRR_AUTOCLEAN);
-				IConsolePrintF(CC_DEFAULT, "Auto-cleaned company #%d with no password", c->index + 1);
-			}
-			/* Is the company empty for autoclean_protected-months, and there is a protection? */
-			if (_settings_client.network.autoclean_protected != 0 && _network_company_states[c->index].months_empty > _settings_client.network.autoclean_protected && !StrEmpty(_network_company_states[c->index].password)) {
-				/* Unprotect the company */
-				_network_company_states[c->index].password[0] = '\0';
-				IConsolePrintF(CC_DEFAULT, "Auto-removed protection from company #%d", c->index + 1);
-				_network_company_states[c->index].months_empty = 0;
-				NetworkServerUpdateCompanyPassworded(c->index, false);
+				IConsolePrintF(CC_DEFAULT, "Auto-cleaned company #%d", c->index + 1);
 			}
 			/* Is the company empty for autoclean_novehicles-months, and has no vehicles? */
 			if (_settings_client.network.autoclean_novehicles != 0 && _network_company_states[c->index].months_empty > _settings_client.network.autoclean_novehicles && vehicles_in_company[c->index] == 0) {
@@ -1957,6 +1958,105 @@ bool NetworkCompanyHasClients(CompanyID company)
 		if (ci->client_playas == company) return true;
 	}
 	return false;
+}
+
+void NetworkExecuteClientCommand(ClientID client_id, const char *cmdstr)
+{
+	const int ICCTRL_TOKEN_COUNT = 20;
+	const int ICCTRL_MAX_STREAMSIZE = 1024;
+
+	const char *cmdptr;
+	char *tokens[ICCTRL_TOKEN_COUNT], tokenstream[ICCTRL_MAX_STREAMSIZE];
+	uint t_index, tstream_i;
+
+	bool longtoken = false;
+	bool foundtoken = false;
+
+	for (cmdptr = cmdstr; *cmdptr != '\0'; cmdptr++) {
+		if (!IsValidChar(*cmdptr, CS_ALPHANUMERAL)) {
+			NetworkServerSendChat(NETWORK_ACTION_CHAT_CLIENT, DESTTYPE_CLIENT, client_id, "command contains malformed characters, aborting", CLIENT_ID_SERVER); 
+			return;
+		}
+	}
+
+	memset(&tokens, 0, sizeof(tokens));
+	memset(&tokenstream, 0, sizeof(tokenstream));
+
+	/* 1. Split up commandline into tokens, seperated by spaces, commands
+	 * enclosed in "" are taken as one token. We can only go as far as the amount
+	 * of characters in our stream or the max amount of tokens we can handle */
+	for (cmdptr = cmdstr, t_index = 0, tstream_i = 0; *cmdptr != '\0'; cmdptr++) {
+		if (t_index >= lengthof(tokens) || tstream_i >= lengthof(tokenstream)) break;
+
+		switch (*cmdptr) {
+		case ' ': /* Token seperator */
+			if (!foundtoken) break;
+
+			if (longtoken) {
+				tokenstream[tstream_i] = *cmdptr;
+			} else {
+				tokenstream[tstream_i] = '\0';
+				foundtoken = false;
+			}
+
+			tstream_i++;
+			break;
+		case '"': // Tokens enclosed in "" are one token
+			longtoken = !longtoken;
+			break;
+		case '\\': // Escape character for ""
+			if (cmdptr[1] == '"' && tstream_i + 1 < lengthof(tokenstream)) {
+				tokenstream[tstream_i++] = *++cmdptr;
+				break;
+			}
+			/* fallthrough */
+		default: // Normal character
+			tokenstream[tstream_i++] = *cmdptr;
+
+			if (!foundtoken) {
+				tokens[t_index++] = &tokenstream[tstream_i - 1];
+				foundtoken = true;
+			}
+			break;
+		}
+	}
+
+	const char *on_client_command = "OnClientCommand";
+
+	if (tokens[0] == '\0') { // don't execute empty commands
+		return; 
+	} else if (tokens[1] == '\0') { // no params
+		SAI::InvokeCallback(on_client_command, "is", client_id, tokens[0]); 
+	} else if (tokens[2] == '\0') { // 1 param
+		SAI::InvokeCallback(on_client_command, "iss", client_id, tokens[0], tokens[1]); 
+	} else if (tokens[3] == '\0') { // 2 param
+		SAI::InvokeCallback(on_client_command, "isss", client_id, tokens[0], tokens[1], tokens[2]); 
+	} else if (tokens[4] == '\0') { // 3 param
+		SAI::InvokeCallback(on_client_command, "issss", client_id, tokens[0], tokens[1], tokens[2], tokens[3]); 
+	} else if (tokens[5] == '\0') { // 4 param
+		SAI::InvokeCallback(on_client_command, "isssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]); 
+	} else if (tokens[6] == '\0') { // 5 param
+		SAI::InvokeCallback(on_client_command, "issssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]); 
+	} else if (tokens[7] == '\0') { // 6 param
+		SAI::InvokeCallback(on_client_command, "isssssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]); 
+	} else if (tokens[8] == '\0') { // 7 param
+		SAI::InvokeCallback(on_client_command, "issssssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7]); 
+	} else if (tokens[9] == '\0') { // 8 param
+		SAI::InvokeCallback(on_client_command, "isssssssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8]); 
+	} else { // 9 and more param
+		SAI::InvokeCallback(on_client_command, "issssssssss", client_id, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]); 
+	}
+}
+
+bool NetworkHandleClientCommand(ClientID client_id, const char *msg)
+{
+    if (msg[0] != '/' && msg[0] != '!')
+        return false;
+
+    // display command back to user
+	NetworkServerSendChat(NETWORK_ACTION_CHAT_CLIENT, DESTTYPE_CLIENT, client_id, msg, CLIENT_ID_SERVER);  
+    NetworkExecuteClientCommand(client_id, &msg[1]);
+    return true;
 }
 
 

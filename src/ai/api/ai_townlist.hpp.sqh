@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_TOWNLIST_HPP_SQH
+#define AI_TOWNLIST_HPP_SQH
+
+#include "ai_townlist.hpp"
+
+namespace SQConvert {
+	/* Allow AITownList to be used as Squirrel parameter */
+	template <> AITownList *GetParam(ForceType<AITownList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AITownList &GetParam(ForceType<AITownList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITownList *GetParam(ForceType<const AITownList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITownList &GetParam(ForceType<const AITownList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITownList *>(HSQUIRRELVM vm, AITownList *res);
+}; // namespace SQConvert
+
+void SQAITownList_Register(Squirrel *engine);
+
+#endif  /* AI_TOWNLIST_HPP_SQH */

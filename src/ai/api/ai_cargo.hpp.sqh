@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_CARGO_HPP_SQH
+#define AI_CARGO_HPP_SQH
+
+#include "ai_cargo.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AICargo::CargoClass GetParam(ForceType<AICargo::CargoClass>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargo::CargoClass>(HSQUIRRELVM vm, AICargo::CargoClass res);
+	template <> AICargo::TownEffect GetParam(ForceType<AICargo::TownEffect>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargo::TownEffect>(HSQUIRRELVM vm, AICargo::TownEffect res);
+
+	/* Allow AICargo to be used as Squirrel parameter */
+	template <> AICargo *GetParam(ForceType<AICargo *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AICargo &GetParam(ForceType<AICargo &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargo *GetParam(ForceType<const AICargo *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AICargo &GetParam(ForceType<const AICargo &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AICargo *>(HSQUIRRELVM vm, AICargo *res);
+}; // namespace SQConvert
+
+void SQAICargo_Register(Squirrel *engine);
+
+#endif  /* AI_CARGO_HPP_SQH */

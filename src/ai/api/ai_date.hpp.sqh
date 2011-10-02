@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_DATE_HPP_SQH
+#define AI_DATE_HPP_SQH
+
+#include "ai_date.hpp"
+
+namespace SQConvert {
+	/* Allow AIDate to be used as Squirrel parameter */
+	template <> AIDate *GetParam(ForceType<AIDate *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIDate &GetParam(ForceType<AIDate &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIDate *GetParam(ForceType<const AIDate *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIDate &GetParam(ForceType<const AIDate &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIDate *>(HSQUIRRELVM vm, AIDate *res);
+}; // namespace SQConvert
+
+void SQAIDate_Register(Squirrel *engine);
+
+#endif  /* AI_DATE_HPP_SQH */

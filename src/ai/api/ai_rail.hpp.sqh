@@ -1,0 +1,32 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_RAIL_HPP_SQH
+#define AI_RAIL_HPP_SQH
+
+#include "ai_rail.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIRail::ErrorMessages GetParam(ForceType<AIRail::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail::ErrorMessages>(HSQUIRRELVM vm, AIRail::ErrorMessages res);
+	template <> AIRail::RailType GetParam(ForceType<AIRail::RailType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail::RailType>(HSQUIRRELVM vm, AIRail::RailType res);
+	template <> AIRail::RailTrack GetParam(ForceType<AIRail::RailTrack>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail::RailTrack>(HSQUIRRELVM vm, AIRail::RailTrack res);
+	template <> AIRail::SignalType GetParam(ForceType<AIRail::SignalType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail::SignalType>(HSQUIRRELVM vm, AIRail::SignalType res);
+	template <> AIRail::BuildType GetParam(ForceType<AIRail::BuildType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail::BuildType>(HSQUIRRELVM vm, AIRail::BuildType res);
+
+	/* Allow AIRail to be used as Squirrel parameter */
+	template <> AIRail *GetParam(ForceType<AIRail *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIRail &GetParam(ForceType<AIRail &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRail *GetParam(ForceType<const AIRail *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRail &GetParam(ForceType<const AIRail &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRail *>(HSQUIRRELVM vm, AIRail *res);
+}; // namespace SQConvert
+
+void SQAIRail_Register(Squirrel *engine);
+
+#endif  /* AI_RAIL_HPP_SQH */

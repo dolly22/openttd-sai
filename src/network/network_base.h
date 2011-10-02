@@ -29,6 +29,9 @@ struct NetworkClientInfo : NetworkClientInfoPool::PoolItem<&_networkclientinfo_p
 	CompanyID client_playas;                        ///< As which company is this client playing (CompanyID)
 	Date join_date;                                 ///< Gamedate the client has joined
 
+	bool is_admin;									///< Is this client marked as admin
+	bool is_moderator;								///< Is this client marked as moderator
+
 	NetworkClientInfo(ClientID client_id = INVALID_CLIENT_ID) : client_id(client_id) {}
 	~NetworkClientInfo();
 

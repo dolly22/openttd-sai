@@ -1,0 +1,44 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_town.hpp"
+
+namespace SQConvert {
+	/* Allow SAITown to be used as Squirrel parameter */
+	template <> SAITown *GetParam(ForceType<SAITown *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAITown *)instance; }
+	template <> SAITown &GetParam(ForceType<SAITown &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAITown *)instance; }
+	template <> const SAITown *GetParam(ForceType<const SAITown *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAITown *)instance; }
+	template <> const SAITown &GetParam(ForceType<const SAITown &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAITown *)instance; }
+	template <> int Return<SAITown *>(HSQUIRRELVM vm, SAITown *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAITown", res, NULL, DefSQDestructorCallback<SAITown>); return 1; }
+} // namespace SQConvert
+
+void SQSAITown_Register(Squirrel *engine)
+{
+	DefSQClass <SAITown> SQSAITown("SAITown");
+	SQSAITown.PreRegister(engine);
+	SQSAITown.AddConstructor<void (SAITown::*)(), 1>(engine, "x");
+
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetLastMonthDeliveredFood,         "GetLastMonthDeliveredFood",         2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetLastMonthDeliveredWater,        "GetLastMonthDeliveredWater",        2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetLastMonthDeliveredGoods,        "GetLastMonthDeliveredGoods",        2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetLastMonthDeliveredValuables,    "GetLastMonthDeliveredValuables",    2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetCurrentMonthDeliveredFood,      "GetCurrentMonthDeliveredFood",      2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetCurrentMonthDeliveredWater,     "GetCurrentMonthDeliveredWater",     2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetCurrentMonthDeliveredGoods,     "GetCurrentMonthDeliveredGoods",     2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetCurrentMonthDeliveredValuables, "GetCurrentMonthDeliveredValuables", 2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetFundBuildingsMonths,            "GetFundBuildingsMonths",            2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetGrowthRate,                     "GetGrowthRate",                     2, ".i");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::SetStorage,                        "SetStorage",                        4, ".iii");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::GetStorage,                        "GetStorage",                        3, ".ii");
+	SQSAITown.DefSQStaticMethod(engine, &SAITown::IsCity,                            "IsCity",                            2, ".i");
+
+	SQSAITown.PostRegister(engine);
+}

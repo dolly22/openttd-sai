@@ -1,0 +1,34 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_ORDER_HPP_SQH
+#define AI_ORDER_HPP_SQH
+
+#include "ai_order.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIOrder::ErrorMessages GetParam(ForceType<AIOrder::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::ErrorMessages>(HSQUIRRELVM vm, AIOrder::ErrorMessages res);
+	template <> AIOrder::AIOrderFlags GetParam(ForceType<AIOrder::AIOrderFlags>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::AIOrderFlags>(HSQUIRRELVM vm, AIOrder::AIOrderFlags res);
+	template <> AIOrder::OrderCondition GetParam(ForceType<AIOrder::OrderCondition>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::OrderCondition>(HSQUIRRELVM vm, AIOrder::OrderCondition res);
+	template <> AIOrder::CompareFunction GetParam(ForceType<AIOrder::CompareFunction>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::CompareFunction>(HSQUIRRELVM vm, AIOrder::CompareFunction res);
+	template <> AIOrder::OrderPosition GetParam(ForceType<AIOrder::OrderPosition>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::OrderPosition>(HSQUIRRELVM vm, AIOrder::OrderPosition res);
+	template <> AIOrder::StopLocation GetParam(ForceType<AIOrder::StopLocation>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder::StopLocation>(HSQUIRRELVM vm, AIOrder::StopLocation res);
+
+	/* Allow AIOrder to be used as Squirrel parameter */
+	template <> AIOrder *GetParam(ForceType<AIOrder *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIOrder &GetParam(ForceType<AIOrder &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIOrder *GetParam(ForceType<const AIOrder *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIOrder &GetParam(ForceType<const AIOrder &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIOrder *>(HSQUIRRELVM vm, AIOrder *res);
+}; // namespace SQConvert
+
+void SQAIOrder_Register(Squirrel *engine);
+
+#endif  /* AI_ORDER_HPP_SQH */

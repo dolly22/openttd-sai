@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_BRIDGE_HPP_SQH
+#define AI_BRIDGE_HPP_SQH
+
+#include "ai_bridge.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIBridge::ErrorMessages GetParam(ForceType<AIBridge::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIBridge::ErrorMessages>(HSQUIRRELVM vm, AIBridge::ErrorMessages res);
+
+	/* Allow AIBridge to be used as Squirrel parameter */
+	template <> AIBridge *GetParam(ForceType<AIBridge *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIBridge &GetParam(ForceType<AIBridge &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBridge *GetParam(ForceType<const AIBridge *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIBridge &GetParam(ForceType<const AIBridge &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIBridge *>(HSQUIRRELVM vm, AIBridge *res);
+}; // namespace SQConvert
+
+void SQAIBridge_Register(Squirrel *engine);
+
+#endif  /* AI_BRIDGE_HPP_SQH */

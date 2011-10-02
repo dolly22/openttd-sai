@@ -1,0 +1,59 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_sign.hpp"
+
+namespace SQConvert {
+	/* Allow SAISign to be used as Squirrel parameter */
+	template <> SAISign *GetParam(ForceType<SAISign *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAISign *)instance; }
+	template <> SAISign &GetParam(ForceType<SAISign &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAISign *)instance; }
+	template <> const SAISign *GetParam(ForceType<const SAISign *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAISign *)instance; }
+	template <> const SAISign &GetParam(ForceType<const SAISign &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAISign *)instance; }
+	template <> int Return<SAISign *>(HSQUIRRELVM vm, SAISign *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAISign", res, NULL, DefSQDestructorCallback<SAISign>); return 1; }
+} // namespace SQConvert
+
+void SQSAISign_Register(Squirrel *engine)
+{
+	DefSQClass <SAISign> SQSAISign("SAISign");
+	SQSAISign.PreRegister(engine);
+	SQSAISign.AddConstructor<void (SAISign::*)(), 1>(engine, "x");
+
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::IsValidSignID,    "IsValidSignID",    2, ".i");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::IsProtected,      "IsProtected",      2, ".i");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::SetProtected,     "SetProtected",     3, ".ib");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::BuildSignCompany, "BuildSignCompany", 6, ".iiii.");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::BuildSign,        "BuildSign",        5, ".iii.");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::SetName,          "SetName",          3, ".i.");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::SetNameCompany,   "SetNameCompany",   4, ".ii.");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::GetName,          "GetName",          2, ".i");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::RemoveSign,       "RemoveSign",       2, ".i");
+	SQSAISign.DefSQStaticMethod(engine, &SAISign::GetOwner,         "GetOwner",         2, ".i");
+
+	SQSAISign.PostRegister(engine);
+}
+
+namespace SQConvert {
+	/* Allow SAISignList to be used as Squirrel parameter */
+	template <> SAISignList *GetParam(ForceType<SAISignList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAISignList *)instance; }
+	template <> SAISignList &GetParam(ForceType<SAISignList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAISignList *)instance; }
+	template <> const SAISignList *GetParam(ForceType<const SAISignList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAISignList *)instance; }
+	template <> const SAISignList &GetParam(ForceType<const SAISignList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAISignList *)instance; }
+	template <> int Return<SAISignList *>(HSQUIRRELVM vm, SAISignList *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAISignList", res, NULL, DefSQDestructorCallback<SAISignList>); return 1; }
+} // namespace SQConvert
+
+void SQSAISignList_Register(Squirrel *engine)
+{
+	DefSQClass <SAISignList> SQSAISignList("SAISignList");
+	SQSAISignList.PreRegister(engine, "AIList");
+	SQSAISignList.AddConstructor<void (SAISignList::*)(), 1>(engine, "x");
+
+	SQSAISignList.PostRegister(engine);
+}

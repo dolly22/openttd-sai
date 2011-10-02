@@ -1,0 +1,63 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_company.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> SAICompany::CompanyID GetParam(ForceType<SAICompany::CompanyID>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (SAICompany::CompanyID)tmp; }
+	template <> int Return<SAICompany::CompanyID>(HSQUIRRELVM vm, SAICompany::CompanyID res) { sq_pushinteger(vm, (int32)res); return 1; }
+
+	/* Allow SAICompany to be used as Squirrel parameter */
+	template <> SAICompany *GetParam(ForceType<SAICompany *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAICompany *)instance; }
+	template <> SAICompany &GetParam(ForceType<SAICompany &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAICompany *)instance; }
+	template <> const SAICompany *GetParam(ForceType<const SAICompany *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAICompany *)instance; }
+	template <> const SAICompany &GetParam(ForceType<const SAICompany &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAICompany *)instance; }
+	template <> int Return<SAICompany *>(HSQUIRRELVM vm, SAICompany *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAICompany", res, NULL, DefSQDestructorCallback<SAICompany>); return 1; }
+} // namespace SQConvert
+
+void SQSAICompany_Register(Squirrel *engine)
+{
+	DefSQClass <SAICompany> SQSAICompany("SAICompany");
+	SQSAICompany.PreRegister(engine);
+	SQSAICompany.AddConstructor<void (SAICompany::*)(), 1>(engine, "x");
+
+	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_INVALID,         "COMPANY_INVALID");
+	SQSAICompany.DefSQConst(engine, SAICompany::OWNER_TOWN,              "OWNER_TOWN");
+	SQSAICompany.DefSQConst(engine, SAICompany::OWNER_NONE,              "OWNER_NONE");
+	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_INACTIVE_CLIENT, "COMPANY_INACTIVE_CLIENT");
+	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_NEW_COMPANY,     "COMPANY_NEW_COMPANY");
+	SQSAICompany.DefSQConst(engine, SAICompany::COMPANY_SPECTATOR,       "COMPANY_SPECTATOR");
+
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::IsValid,               "IsValid",               2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetName,               "GetName",               2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::InauguratedYear,       "InauguratedYear",       2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::IsSuspended,           "IsSuspended",           2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::MonthsEmpty,           "MonthsEmpty",           2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetMoney,              "GetMoney",              2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetCEIncome,           "GetCEIncome",           2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetCEExpenses,         "GetCEExpenses",         2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetCEDeliveredCargo,   "GetCEDeliveredCargo",   2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetCEPerformance,      "GetCEPerformance",      2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetCECompanyValue,     "GetCECompanyValue",     2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::SetSuspended,          "SetSuspended",          3, ".ib");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::CurrentCV,             "CurrentCV",             2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::CurrentNCV,            "CurrentNCV",            2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::CurrentDeliveredCargo, "CurrentDeliveredCargo", 2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::CurrentIncome,         "CurrentIncome",         2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::SetStorage,            "SetStorage",            4, ".iii");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetStorage,            "GetStorage",            3, ".ii");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::IsProtected,           "IsProtected",           2, ".i");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::SetProtected,          "SetProtected",          3, ".ib");
+	SQSAICompany.DefSQStaticMethod(engine, &SAICompany::GetHQSize,             "GetHQSize",             2, ".i");
+
+	SQSAICompany.PostRegister(engine);
+}

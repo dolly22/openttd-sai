@@ -176,7 +176,6 @@ void AIInstance::RegisterAPI()
 {
 /* Register all classes */
 	squirrel_register_std(this->engine);
-	SQAIList_Register(this->engine);
 	SQAIAccounting_Register(this->engine);
 	SQAIAirport_Register(this->engine);
 	SQAIBase_Register(this->engine);
@@ -227,6 +226,7 @@ void AIInstance::RegisterAPI()
 	SQAIIndustryList_CargoProducing_Register(this->engine);
 	SQAIIndustryType_Register(this->engine);
 	SQAIIndustryTypeList_Register(this->engine);
+	SQAIList_Register(this->engine);
 	SQAILog_Register(this->engine);
 	SQAIMap_Register(this->engine);
 	SQAIMarine_Register(this->engine);

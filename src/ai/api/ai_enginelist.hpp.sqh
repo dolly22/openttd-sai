@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_ENGINELIST_HPP_SQH
+#define AI_ENGINELIST_HPP_SQH
+
+#include "ai_enginelist.hpp"
+
+namespace SQConvert {
+	/* Allow AIEngineList to be used as Squirrel parameter */
+	template <> AIEngineList *GetParam(ForceType<AIEngineList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIEngineList &GetParam(ForceType<AIEngineList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEngineList *GetParam(ForceType<const AIEngineList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEngineList &GetParam(ForceType<const AIEngineList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIEngineList *>(HSQUIRRELVM vm, AIEngineList *res);
+}; // namespace SQConvert
+
+void SQAIEngineList_Register(Squirrel *engine);
+
+#endif  /* AI_ENGINELIST_HPP_SQH */

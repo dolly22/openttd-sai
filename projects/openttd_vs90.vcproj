@@ -3816,6 +3816,94 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="SAI API"
+			>
+			<File
+				RelativePath=".\..\src\sai\api\sai_client.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_clientlist.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_company.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_companylist.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_gamesettings.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_industry.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_server.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_sign.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_tile.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_town.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="SAI API Implementation"
+			>
+			<File
+				RelativePath=".\..\src\sai\api\sai_client.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_clientlist.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_company.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_companylist.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_gamesettings.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_industry.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_server.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_sign.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_tile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_town.cpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\..\media\openttd.ico"
 			>

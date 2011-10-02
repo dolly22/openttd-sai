@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_MAP_HPP_SQH
+#define AI_MAP_HPP_SQH
+
+#include "ai_map.hpp"
+
+namespace SQConvert {
+	/* Allow AIMap to be used as Squirrel parameter */
+	template <> AIMap *GetParam(ForceType<AIMap *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIMap &GetParam(ForceType<AIMap &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIMap *GetParam(ForceType<const AIMap *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIMap &GetParam(ForceType<const AIMap &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIMap *>(HSQUIRRELVM vm, AIMap *res);
+}; // namespace SQConvert
+
+void SQAIMap_Register(Squirrel *engine);
+
+#endif  /* AI_MAP_HPP_SQH */

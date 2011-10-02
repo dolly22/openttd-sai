@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_WAYPOINT_HPP_SQH
+#define AI_WAYPOINT_HPP_SQH
+
+#include "ai_waypoint.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIWaypoint::WaypointType GetParam(ForceType<AIWaypoint::WaypointType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIWaypoint::WaypointType>(HSQUIRRELVM vm, AIWaypoint::WaypointType res);
+	template <> AIWaypoint::ErrorMessages GetParam(ForceType<AIWaypoint::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIWaypoint::ErrorMessages>(HSQUIRRELVM vm, AIWaypoint::ErrorMessages res);
+
+	/* Allow AIWaypoint to be used as Squirrel parameter */
+	template <> AIWaypoint *GetParam(ForceType<AIWaypoint *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIWaypoint &GetParam(ForceType<AIWaypoint &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypoint *GetParam(ForceType<const AIWaypoint *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIWaypoint &GetParam(ForceType<const AIWaypoint &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIWaypoint *>(HSQUIRRELVM vm, AIWaypoint *res);
+}; // namespace SQConvert
+
+void SQAIWaypoint_Register(Squirrel *engine);
+
+#endif  /* AI_WAYPOINT_HPP_SQH */

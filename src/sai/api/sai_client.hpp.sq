@@ -1,0 +1,50 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sai_client.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> SAIClient::ClientID GetParam(ForceType<SAIClient::ClientID>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQInteger tmp; sq_getinteger(vm, index, &tmp); return (SAIClient::ClientID)tmp; }
+	template <> int Return<SAIClient::ClientID>(HSQUIRRELVM vm, SAIClient::ClientID res) { sq_pushinteger(vm, (int32)res); return 1; }
+
+	/* Allow SAIClient to be used as Squirrel parameter */
+	template <> SAIClient *GetParam(ForceType<SAIClient *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIClient *)instance; }
+	template <> SAIClient &GetParam(ForceType<SAIClient &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIClient *)instance; }
+	template <> const SAIClient *GetParam(ForceType<const SAIClient *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SAIClient *)instance; }
+	template <> const SAIClient &GetParam(ForceType<const SAIClient &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SAIClient *)instance; }
+	template <> int Return<SAIClient *>(HSQUIRRELVM vm, SAIClient *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SAIClient", res, NULL, DefSQDestructorCallback<SAIClient>); return 1; }
+} // namespace SQConvert
+
+void SQSAIClient_Register(Squirrel *engine)
+{
+	DefSQClass <SAIClient> SQSAIClient("SAIClient");
+	SQSAIClient.PreRegister(engine);
+	SQSAIClient.AddConstructor<void (SAIClient::*)(), 1>(engine, "x");
+
+	SQSAIClient.DefSQConst(engine, SAIClient::INVALID_CLIENT_ID, "INVALID_CLIENT_ID");
+	SQSAIClient.DefSQConst(engine, SAIClient::CLIENT_ID_SERVER,  "CLIENT_ID_SERVER");
+	SQSAIClient.DefSQConst(engine, SAIClient::CLIENT_ID_FIRST,   "CLIENT_ID_FIRST");
+
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsValid,              "IsValid",              2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsAdmin,              "IsAdmin",              2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetAdmin,             "SetAdmin",             3, ".ib");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::IsModerator,          "IsModerator",          2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::SetModerator,         "SetModerator",         3, ".ib");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetName,              "GetName",              2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetCompany,           "GetCompany",           2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAddress,           "GetAddress",           2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetAnonymizedAddress, "GetAnonymizedAddress", 2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::GetJoinedDate,        "GetJoinedDate",        2, ".i");
+	SQSAIClient.DefSQStaticMethod(engine, &SAIClient::Disconnect,           "Disconnect",           3, ".ii");
+
+	SQSAIClient.PostRegister(engine);
+}

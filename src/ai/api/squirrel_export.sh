@@ -23,13 +23,14 @@ fi
 # This must be called from within the src/ai/api directory.
 
 if [ -z "$1" ]; then
-	for f in `ls *.hpp`; do
+	for f in `ls ../../sai/api/*.hpp`; do
 		case "${f}" in
 			# these files should not be changed by this script
-			"ai_controller.hpp" | "ai_object.hpp" | "ai_types.hpp" | "ai_changelog.hpp" | "ai_info_docs.hpp" ) continue;
-		esac
+			"../../sai/api/sai_controller.hpp" ) continue;
+		esac	
+	
 		${AWK} -f squirrel_export.awk ${f} > ${f}.tmp
-		if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' ${f}.tmp ${f}.sq 2> /dev/null || echo boo`" ]; then
+		if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' --strip-trailing-cr ${f}.tmp ${f}.sq 2> /dev/null || echo boo`" ]; then
 			mv ${f}.tmp ${f}.sq
 			echo "Updated: ${f}.sq"
 			svn add ${f}.sq > /dev/null 2>&1
@@ -39,9 +40,37 @@ if [ -z "$1" ]; then
 			rm -f ${f}.tmp
 		fi
 	done
+	
+	for f in `ls *.hpp`; do
+		case "${f}" in
+			# these files should not be changed by this script
+			"ai_controller.hpp" | "ai_object.hpp" | "ai_types.hpp" | "ai_changelog.hpp" | "ai_info_docs.hpp" ) continue;
+		esac
+		${AWK} -f squirrel_export.awk ${f} > ${f}.tmp
+		if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' --strip-trailing-cr ${f}.tmp ${f}.sq 2> /dev/null || echo boo`" ]; then
+			mv ${f}.tmp ${f}.sq
+			echo "Updated: ${f}.sq"
+			svn add ${f}.sq > /dev/null 2>&1
+			svn propset svn:eol-style native ${f}.sq > /dev/null 2>&1
+			svn propset svn:keywords Id ${f}.sq > /dev/null 2>&1
+		else
+			rm -f ${f}.tmp
+		fi
+		
+		awk -f squirrel_export_inc.awk ${f} > ${f}.tmp
+		if ! [ -f "${f}.sqh" ] || [ -n "`diff -I '$Id' --strip-trailing-cr ${f}.tmp ${f}.sqh 2> /dev/null || echo boo`" ]; then
+			mv ${f}.tmp ${f}.sqh
+			echo "Updated: ${f}.sqh"
+			svn add ${f}.sqh > /dev/null 2>&1
+			svn propset svn:eol-style native ${f}.sqh > /dev/null 2>&1
+			svn propset svn:keywords Id ${f}.sqh > /dev/null 2>&1
+		else
+			rm -f ${f}.tmp
+		fi		
+	done
 else
 	${AWK} -f squirrel_export.awk $1 > $1.tmp
-	if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' $1.sq $1.tmp 2> /dev/null || echo boo`" ]; then
+	if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' --strip-trailing-cr $1.sq $1.tmp 2> /dev/null || echo boo`" ]; then
 		mv $1.tmp $1.sq
 		echo "Updated: $1.sq"
 		svn add $1.sq > /dev/null 2>&1
@@ -61,6 +90,15 @@ for f in `ls *.hpp.sq`; do
 	fi
 done
 
+# Remove .hpp.sqh if .hpp doesn't exist anymore
+for f in `ls *.hpp.sqh`; do
+	f=`echo ${f} | sed "s/.hpp.sqh$/.hpp/"`
+	if [ ! -f ${f} ];then
+		echo "Deleted: ${f}.sqh"
+		svn del --force ${f}.sqh > /dev/null 2>&1
+	fi
+done
+
 # Add stuff to ai_instance.cpp
 f='../ai_instance.cpp'
 
@@ -76,7 +114,7 @@ echo "
 /Note: this line a marker in squirrel_export.sh. Do not change!/ {
 	print \$0
 	gsub(\"^.*/\", \"\")
-	split(\"`grep '^void SQAI.*_Register(Squirrel \*engine)$' *.hpp.sq | sed 's/:.*$//' | sort | uniq | tr -d '\r' | tr '\n' ' '`\", files, \" \")
+	split(\"`grep '^void SQAI.*_Register(Squirrel \*engine)' *.hpp.sq | sed 's/:.*$//' | sort | uniq | tr -d '\r' | tr '\n' ' '`\", files, \" \")
 
 	for (i = 1; files[i] != \"\"; i++) {
 		print \"#include \\\"api/\" files[i] \"\\\"\" \$0
@@ -89,9 +127,7 @@ echo "
 	print \$0
 	gsub(\"^.*/\", \"\")
 	print \"	squirrel_register_std(this->engine);\" \$0
-	# AIList needs to be registered with squirrel before all AIList subclasses.
-	print \"	SQAIList_Register(this->engine);\" \$0
-	split(\"`grep '^void SQAI.*_Register(Squirrel \*engine)$' *.hpp.sq | grep -v 'SQAIList_Register' | sed 's/^.*void //;s/Squirrel \*/this->/;s/$/;/;s/_Register/0000Register/g;' | sort | sed 's/0000Register/_Register/g' | tr -d '\r' | tr '\n' ' '`\", regs, \" \")
+	split(\"`grep '^void SQAI.*_Register(Squirrel \*engine)' *.hpp.sq | sed 's/^.*void //;s/Squirrel \*/this->/;s/$/;/;s/_Register/0000Register/g;' | sort | sed 's/0000Register/_Register/g' | tr -d '\r' | tr '\n' ' '`\", regs, \" \")
 
 	for (i = 1; regs[i] != \"\"; i++) {
 		if (regs[i] == \"SQAIController_Register(this->engine);\") continue
@@ -106,7 +142,7 @@ echo "
 
 ${AWK} -f ${f}.awk ${f} > ${f}.tmp
 
-if ! [ -f "${f}" ] || [ -n "`diff -I '$Id' ${f} ${f}.tmp 2> /dev/null || echo boo`" ]; then
+if ! [ -f "${f}" ] || [ -n "`diff -I '$Id' --strip-trailing-cr ${f} ${f}.tmp 2> /dev/null || echo boo`" ]; then
 	mv ${f}.tmp ${f}
 	echo "Updated: ${f}"
 else

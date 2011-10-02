@@ -90,6 +90,14 @@ struct Town : TownPool::PoolItem<&_town_pool> {
 	uint16 new_act_food;
 	uint16 new_act_water;
 
+	/* Extended growth support - goods */
+	uint32 act_goods;
+	uint32 new_act_goods;
+
+	/* Extended growth support - valuables/diamonds */
+	uint32 act_valuables;
+	uint32 new_act_valuables;
+
 	/* SA universal town storage... */
 	uint32 sa_storage[SAI_TOWN_STORAGE_SIZE];
 

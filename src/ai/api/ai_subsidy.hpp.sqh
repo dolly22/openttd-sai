@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_SUBSIDY_HPP_SQH
+#define AI_SUBSIDY_HPP_SQH
+
+#include "ai_subsidy.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AISubsidy::SubsidyParticipantType GetParam(ForceType<AISubsidy::SubsidyParticipantType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISubsidy::SubsidyParticipantType>(HSQUIRRELVM vm, AISubsidy::SubsidyParticipantType res);
+
+	/* Allow AISubsidy to be used as Squirrel parameter */
+	template <> AISubsidy *GetParam(ForceType<AISubsidy *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AISubsidy &GetParam(ForceType<AISubsidy &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISubsidy *GetParam(ForceType<const AISubsidy *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISubsidy &GetParam(ForceType<const AISubsidy &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISubsidy *>(HSQUIRRELVM vm, AISubsidy *res);
+}; // namespace SQConvert
+
+void SQAISubsidy_Register(Squirrel *engine);
+
+#endif  /* AI_SUBSIDY_HPP_SQH */

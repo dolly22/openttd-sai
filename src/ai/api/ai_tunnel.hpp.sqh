@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_TUNNEL_HPP_SQH
+#define AI_TUNNEL_HPP_SQH
+
+#include "ai_tunnel.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AITunnel::ErrorMessages GetParam(ForceType<AITunnel::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITunnel::ErrorMessages>(HSQUIRRELVM vm, AITunnel::ErrorMessages res);
+
+	/* Allow AITunnel to be used as Squirrel parameter */
+	template <> AITunnel *GetParam(ForceType<AITunnel *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AITunnel &GetParam(ForceType<AITunnel &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITunnel *GetParam(ForceType<const AITunnel *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITunnel &GetParam(ForceType<const AITunnel &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITunnel *>(HSQUIRRELVM vm, AITunnel *res);
+}; // namespace SQConvert
+
+void SQAITunnel_Register(Squirrel *engine);
+
+#endif  /* AI_TUNNEL_HPP_SQH */

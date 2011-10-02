@@ -1,0 +1,31 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_STATIONLIST_HPP_SQH
+#define AI_STATIONLIST_HPP_SQH
+
+#include "ai_stationlist.hpp"
+
+namespace SQConvert {
+	/* Allow AIStationList to be used as Squirrel parameter */
+	template <> AIStationList *GetParam(ForceType<AIStationList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIStationList &GetParam(ForceType<AIStationList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIStationList *GetParam(ForceType<const AIStationList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIStationList &GetParam(ForceType<const AIStationList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIStationList *>(HSQUIRRELVM vm, AIStationList *res);
+}; // namespace SQConvert
+
+void SQAIStationList_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIStationList_Vehicle to be used as Squirrel parameter */
+	template <> AIStationList_Vehicle *GetParam(ForceType<AIStationList_Vehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIStationList_Vehicle &GetParam(ForceType<AIStationList_Vehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIStationList_Vehicle *GetParam(ForceType<const AIStationList_Vehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIStationList_Vehicle &GetParam(ForceType<const AIStationList_Vehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIStationList_Vehicle *>(HSQUIRRELVM vm, AIStationList_Vehicle *res);
+}; // namespace SQConvert
+
+void SQAIStationList_Vehicle_Register(Squirrel *engine);
+
+#endif  /* AI_STATIONLIST_HPP_SQH */

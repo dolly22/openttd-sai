@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_SIGNLIST_HPP_SQH
+#define AI_SIGNLIST_HPP_SQH
+
+#include "ai_signlist.hpp"
+
+namespace SQConvert {
+	/* Allow AISignList to be used as Squirrel parameter */
+	template <> AISignList *GetParam(ForceType<AISignList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AISignList &GetParam(ForceType<AISignList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISignList *GetParam(ForceType<const AISignList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AISignList &GetParam(ForceType<const AISignList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AISignList *>(HSQUIRRELVM vm, AISignList *res);
+}; // namespace SQConvert
+
+void SQAISignList_Register(Squirrel *engine);
+
+#endif  /* AI_SIGNLIST_HPP_SQH */

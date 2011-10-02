@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_INDUSTRYTYPE_HPP_SQH
+#define AI_INDUSTRYTYPE_HPP_SQH
+
+#include "ai_industrytype.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIIndustryType::SpecialIndustryType GetParam(ForceType<AIIndustryType::SpecialIndustryType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIIndustryType::SpecialIndustryType>(HSQUIRRELVM vm, AIIndustryType::SpecialIndustryType res);
+
+	/* Allow AIIndustryType to be used as Squirrel parameter */
+	template <> AIIndustryType *GetParam(ForceType<AIIndustryType *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIIndustryType &GetParam(ForceType<AIIndustryType &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIIndustryType *GetParam(ForceType<const AIIndustryType *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIIndustryType &GetParam(ForceType<const AIIndustryType &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIIndustryType *>(HSQUIRRELVM vm, AIIndustryType *res);
+}; // namespace SQConvert
+
+void SQAIIndustryType_Register(Squirrel *engine);
+
+#endif  /* AI_INDUSTRYTYPE_HPP_SQH */

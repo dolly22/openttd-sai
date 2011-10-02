@@ -1,0 +1,24 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_LIST_HPP_SQH
+#define AI_LIST_HPP_SQH
+
+#include "ai_list.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIList::SorterType GetParam(ForceType<AIList::SorterType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIList::SorterType>(HSQUIRRELVM vm, AIList::SorterType res);
+
+	/* Allow AIList to be used as Squirrel parameter */
+	template <> AIList *GetParam(ForceType<AIList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIList &GetParam(ForceType<AIList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIList *GetParam(ForceType<const AIList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIList &GetParam(ForceType<const AIList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIList *>(HSQUIRRELVM vm, AIList *res);
+}; // namespace SQConvert
+
+void SQAIList_Register(Squirrel *engine);
+
+#endif  /* AI_LIST_HPP_SQH */

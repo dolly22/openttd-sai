@@ -1,0 +1,30 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_ROAD_HPP_SQH
+#define AI_ROAD_HPP_SQH
+
+#include "ai_road.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIRoad::ErrorMessages GetParam(ForceType<AIRoad::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRoad::ErrorMessages>(HSQUIRRELVM vm, AIRoad::ErrorMessages res);
+	template <> AIRoad::RoadType GetParam(ForceType<AIRoad::RoadType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRoad::RoadType>(HSQUIRRELVM vm, AIRoad::RoadType res);
+	template <> AIRoad::RoadVehicleType GetParam(ForceType<AIRoad::RoadVehicleType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRoad::RoadVehicleType>(HSQUIRRELVM vm, AIRoad::RoadVehicleType res);
+	template <> AIRoad::BuildType GetParam(ForceType<AIRoad::BuildType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRoad::BuildType>(HSQUIRRELVM vm, AIRoad::BuildType res);
+
+	/* Allow AIRoad to be used as Squirrel parameter */
+	template <> AIRoad *GetParam(ForceType<AIRoad *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIRoad &GetParam(ForceType<AIRoad &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRoad *GetParam(ForceType<const AIRoad *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIRoad &GetParam(ForceType<const AIRoad &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIRoad *>(HSQUIRRELVM vm, AIRoad *res);
+}; // namespace SQConvert
+
+void SQAIRoad_Register(Squirrel *engine);
+
+#endif  /* AI_ROAD_HPP_SQH */

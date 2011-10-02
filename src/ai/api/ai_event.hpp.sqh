@@ -1,0 +1,35 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_EVENT_HPP_SQH
+#define AI_EVENT_HPP_SQH
+
+#include "ai_event.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIEvent::AIEventType GetParam(ForceType<AIEvent::AIEventType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIEvent::AIEventType>(HSQUIRRELVM vm, AIEvent::AIEventType res);
+
+	/* Allow AIEvent to be used as Squirrel parameter */
+	template <> AIEvent *GetParam(ForceType<AIEvent *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIEvent &GetParam(ForceType<AIEvent &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEvent *GetParam(ForceType<const AIEvent *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEvent &GetParam(ForceType<const AIEvent &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIEvent *>(HSQUIRRELVM vm, AIEvent *res);
+}; // namespace SQConvert
+
+void SQAIEvent_Register(Squirrel *engine);
+
+namespace SQConvert {
+	/* Allow AIEventController to be used as Squirrel parameter */
+	template <> AIEventController *GetParam(ForceType<AIEventController *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIEventController &GetParam(ForceType<AIEventController &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEventController *GetParam(ForceType<const AIEventController *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIEventController &GetParam(ForceType<const AIEventController &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIEventController *>(HSQUIRRELVM vm, AIEventController *res);
+}; // namespace SQConvert
+
+void SQAIEventController_Register(Squirrel *engine);
+
+#endif  /* AI_EVENT_HPP_SQH */

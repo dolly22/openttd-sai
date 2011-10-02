@@ -38,9 +38,12 @@
 
 #include "table/strings.h"
 
+#include "sai/sai.hpp"
+
 CompanyByte _local_company;   ///< Company controlled by the human player at this client. Can also be #COMPANY_SPECTATOR.
 CompanyByte _current_company; ///< Company currently doing an action.
 Colours _company_colours[MAX_COMPANIES];  ///< NOSAVE: can be determined from company structs.
+
 CompanyManagerFace _company_manager_face; ///< for company manager face storage in openttd.cfg
 uint _next_competitor_start;              ///< the number of ticks before the next AI is started
 uint _cur_company_tick_index;             ///< used to generate a name for one company that doesn't have a name yet per tick
@@ -564,6 +567,9 @@ Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMPANY)
 	if (is_ai && (!_networking || _network_server)) AI::StartNew(c->index);
 
 	c->num_engines = CallocT<uint16>(Engine::GetPoolSize());
+
+	c->is_suspended = false;
+	c->is_protected = false;
 
 	// initialize company storage
 	memset(c->sa_storage, 0, sizeof(c->sa_storage));

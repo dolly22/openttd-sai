@@ -1107,6 +1107,26 @@
     <ClInclude Include="..\src\sai\sai_scanner.hpp" />
     <ClCompile Include="..\src\sai\sai_controller.cpp" />
     <ClInclude Include="..\src\sai\sai_controller.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_client.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_clientlist.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_company.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_companylist.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_gamesettings.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_industry.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_server.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_sign.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_tile.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_town.hpp" />
+    <ClCompile Include="..\src\sai\api\sai_client.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_clientlist.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_company.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_companylist.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_gamesettings.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_industry.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_server.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_sign.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_tile.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_town.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

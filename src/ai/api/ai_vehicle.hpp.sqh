@@ -1,0 +1,28 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_VEHICLE_HPP_SQH
+#define AI_VEHICLE_HPP_SQH
+
+#include "ai_vehicle.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIVehicle::ErrorMessages GetParam(ForceType<AIVehicle::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicle::ErrorMessages>(HSQUIRRELVM vm, AIVehicle::ErrorMessages res);
+	template <> AIVehicle::VehicleType GetParam(ForceType<AIVehicle::VehicleType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicle::VehicleType>(HSQUIRRELVM vm, AIVehicle::VehicleType res);
+	template <> AIVehicle::VehicleState GetParam(ForceType<AIVehicle::VehicleState>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicle::VehicleState>(HSQUIRRELVM vm, AIVehicle::VehicleState res);
+
+	/* Allow AIVehicle to be used as Squirrel parameter */
+	template <> AIVehicle *GetParam(ForceType<AIVehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIVehicle &GetParam(ForceType<AIVehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicle *GetParam(ForceType<const AIVehicle *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIVehicle &GetParam(ForceType<const AIVehicle &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIVehicle *>(HSQUIRRELVM vm, AIVehicle *res);
+}; // namespace SQConvert
+
+void SQAIVehicle_Register(Squirrel *engine);
+
+#endif  /* AI_VEHICLE_HPP_SQH */

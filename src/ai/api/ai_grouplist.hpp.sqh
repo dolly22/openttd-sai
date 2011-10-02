@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_GROUPLIST_HPP_SQH
+#define AI_GROUPLIST_HPP_SQH
+
+#include "ai_grouplist.hpp"
+
+namespace SQConvert {
+	/* Allow AIGroupList to be used as Squirrel parameter */
+	template <> AIGroupList *GetParam(ForceType<AIGroupList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIGroupList &GetParam(ForceType<AIGroupList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGroupList *GetParam(ForceType<const AIGroupList *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIGroupList &GetParam(ForceType<const AIGroupList &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIGroupList *>(HSQUIRRELVM vm, AIGroupList *res);
+}; // namespace SQConvert
+
+void SQAIGroupList_Register(Squirrel *engine);
+
+#endif  /* AI_GROUPLIST_HPP_SQH */

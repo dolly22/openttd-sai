@@ -21,6 +21,8 @@
 
 #include "table/strings.h"
 
+#include "sai/sai.hpp"
+
 SignID _new_sign_id;
 
 /**
@@ -47,6 +49,7 @@ CommandCost CmdPlaceSign(TileIndex tile, DoCommandFlag flags, uint32 p1, uint32 
 		Sign *si = new Sign(_current_company);
 		int x = TileX(tile) * TILE_SIZE;
 		int y = TileY(tile) * TILE_SIZE;
+		si->is_protected = false;
 
 		si->x = x;
 		si->y = y;

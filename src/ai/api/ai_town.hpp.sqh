@@ -1,0 +1,28 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_TOWN_HPP_SQH
+#define AI_TOWN_HPP_SQH
+
+#include "ai_town.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AITown::TownAction GetParam(ForceType<AITown::TownAction>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITown::TownAction>(HSQUIRRELVM vm, AITown::TownAction res);
+	template <> AITown::TownRating GetParam(ForceType<AITown::TownRating>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITown::TownRating>(HSQUIRRELVM vm, AITown::TownRating res);
+	template <> AITown::RoadLayout GetParam(ForceType<AITown::RoadLayout>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITown::RoadLayout>(HSQUIRRELVM vm, AITown::RoadLayout res);
+
+	/* Allow AITown to be used as Squirrel parameter */
+	template <> AITown *GetParam(ForceType<AITown *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AITown &GetParam(ForceType<AITown &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITown *GetParam(ForceType<const AITown *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITown &GetParam(ForceType<const AITown &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITown *>(HSQUIRRELVM vm, AITown *res);
+}; // namespace SQConvert
+
+void SQAITown_Register(Squirrel *engine);
+
+#endif  /* AI_TOWN_HPP_SQH */

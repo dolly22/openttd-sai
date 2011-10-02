@@ -1,0 +1,32 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_TILE_HPP_SQH
+#define AI_TILE_HPP_SQH
+
+#include "ai_tile.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AITile::ErrorMessages GetParam(ForceType<AITile::ErrorMessages>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile::ErrorMessages>(HSQUIRRELVM vm, AITile::ErrorMessages res);
+	template <> AITile::Corner GetParam(ForceType<AITile::Corner>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile::Corner>(HSQUIRRELVM vm, AITile::Corner res);
+	template <> AITile::Slope GetParam(ForceType<AITile::Slope>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile::Slope>(HSQUIRRELVM vm, AITile::Slope res);
+	template <> AITile::TransportType GetParam(ForceType<AITile::TransportType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile::TransportType>(HSQUIRRELVM vm, AITile::TransportType res);
+	template <> AITile::BuildType GetParam(ForceType<AITile::BuildType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile::BuildType>(HSQUIRRELVM vm, AITile::BuildType res);
+
+	/* Allow AITile to be used as Squirrel parameter */
+	template <> AITile *GetParam(ForceType<AITile *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AITile &GetParam(ForceType<AITile &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITile *GetParam(ForceType<const AITile *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AITile &GetParam(ForceType<const AITile &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AITile *>(HSQUIRRELVM vm, AITile *res);
+}; // namespace SQConvert
+
+void SQAITile_Register(Squirrel *engine);
+
+#endif  /* AI_TILE_HPP_SQH */

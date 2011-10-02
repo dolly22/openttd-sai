@@ -1,0 +1,26 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_AIRPORT_HPP_SQH
+#define AI_AIRPORT_HPP_SQH
+
+#include "ai_airport.hpp"
+
+namespace SQConvert {
+	/* Allow enums to be used as Squirrel parameters */
+	template <> AIAirport::AirportType GetParam(ForceType<AIAirport::AirportType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIAirport::AirportType>(HSQUIRRELVM vm, AIAirport::AirportType res);
+	template <> AIAirport::PlaneType GetParam(ForceType<AIAirport::PlaneType>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIAirport::PlaneType>(HSQUIRRELVM vm, AIAirport::PlaneType res);
+
+	/* Allow AIAirport to be used as Squirrel parameter */
+	template <> AIAirport *GetParam(ForceType<AIAirport *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIAirport &GetParam(ForceType<AIAirport &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIAirport *GetParam(ForceType<const AIAirport *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIAirport &GetParam(ForceType<const AIAirport &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIAirport *>(HSQUIRRELVM vm, AIAirport *res);
+}; // namespace SQConvert
+
+void SQAIAirport_Register(Squirrel *engine);
+
+#endif  /* AI_AIRPORT_HPP_SQH */

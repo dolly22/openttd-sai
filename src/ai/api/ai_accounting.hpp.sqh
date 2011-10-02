@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_ACCOUNTING_HPP_SQH
+#define AI_ACCOUNTING_HPP_SQH
+
+#include "ai_accounting.hpp"
+
+namespace SQConvert {
+	/* Allow AIAccounting to be used as Squirrel parameter */
+	template <> AIAccounting *GetParam(ForceType<AIAccounting *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AIAccounting &GetParam(ForceType<AIAccounting &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIAccounting *GetParam(ForceType<const AIAccounting *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AIAccounting &GetParam(ForceType<const AIAccounting &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AIAccounting *>(HSQUIRRELVM vm, AIAccounting *res);
+}; // namespace SQConvert
+
+void SQAIAccounting_Register(Squirrel *engine);
+
+#endif  /* AI_ACCOUNTING_HPP_SQH */

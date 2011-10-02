@@ -108,6 +108,35 @@ const char *NetworkAddress::GetAddressAsString(bool with_family)
 	return buf;
 }
 
+
+
+uint32 Hash32bit(uint32 ip)
+{
+ 	ip -= (ip<<6);
+ 	ip ^= (ip>>17);
+ 	ip -= (ip<<9);
+ 	ip ^= (ip<<4);
+ 	ip -= (ip<<3);
+ 	ip ^= (ip<<10);
+ 	ip ^= (ip>>15);
+ 	return ip;
+}
+
+const char *NetworkAddress::GetAnonymizedAddressAsString()
+{
+	static char buf[NETWORK_HOSTNAME_LENGTH];
+	if (this->GetAddress()->ss_family == AF_INET6) {
+		// 128bit hash (there will be many conflits, change when there is time)
+		IN6_ADDR *ipv6 = &((struct sockaddr_in6*)&this->address)->sin6_addr;
+		uint32 ipv6part = ipv6->u.Byte[0] | ipv6->u.Byte[15] << 8 | ipv6->u.Byte[14] << 16 | ipv6->u.Byte[1] << 24;
+		snprintf(buf, sizeof(buf), "[%x]", Hash32bit(ipv6part));
+	} else if (this->GetAddress()->ss_family == AF_INET) {
+		// 32bit hash
+		snprintf(buf, sizeof(buf), "[%x]", Hash32bit(*(uint32*)&((struct sockaddr_in*)&this->address)->sin_addr.s_addr));
+	}
+	return buf;
+}
+
 /**
  * Helper function to resolve without opening a socket.
  * @param runp information about the socket to try not

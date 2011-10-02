@@ -1,0 +1,20 @@
+/* $Id$ */
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#ifndef AI_LOG_HPP_SQH
+#define AI_LOG_HPP_SQH
+
+#include "ai_log.hpp"
+
+namespace SQConvert {
+	/* Allow AILog to be used as Squirrel parameter */
+	template <> AILog *GetParam(ForceType<AILog *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> AILog &GetParam(ForceType<AILog &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AILog *GetParam(ForceType<const AILog *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> const AILog &GetParam(ForceType<const AILog &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr);
+	template <> int Return<AILog *>(HSQUIRRELVM vm, AILog *res);
+}; // namespace SQConvert
+
+void SQAILog_Register(Squirrel *engine);
+
+#endif  /* AI_LOG_HPP_SQH */
