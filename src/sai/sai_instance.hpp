@@ -5,6 +5,7 @@
 
 class SAIInstance {
 	friend class SAI;
+	friend class SAIObject;
 
 public:
 	SAIInstance();

@@ -100,6 +100,9 @@
     <Filter Include="SAI API Implementation">
       <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000032}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SAI Sqlite3">
+      <UniqueIdentifier>{c76ff9f1-1e62-46d8-8d55-000000000033}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\airport.cpp">
@@ -2598,6 +2601,9 @@
     <ClInclude Include="..\src\sai\api\sai_town.hpp">
       <Filter>SAI API</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\sai\api\sai_object.hpp">
+      <Filter>SAI API</Filter>
+    </ClInclude>
     <ClCompile Include="..\src\sai\api\sai_client.cpp">
       <Filter>SAI API Implementation</Filter>
     </ClCompile>
@@ -2628,6 +2634,36 @@
     <ClCompile Include="..\src\sai\api\sai_town.cpp">
       <Filter>SAI API Implementation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\sai\api\sai_object.cpp">
+      <Filter>SAI API Implementation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\saiext\sqlite3\api\sqlite_command.hpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\saiext\sqlite3\api\sqlite_command.cpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\saiext\sqlite3\api\sqlite_reader.hpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\saiext\sqlite3\api\sqlite_reader.cpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\saiext\sqlite3\api\sqlite_conn.cpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\saiext\sqlite3\api\sqlite_conn.hpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\saiext\sqlite3\sqlite_library.cpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\src\saiext\sqlite3\sqlite_library.hpp">
+      <Filter>SAI Sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\saiext\sqlite3\sqlite3_import.h">
+      <Filter>SAI Sqlite3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

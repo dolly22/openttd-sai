@@ -23,6 +23,20 @@ fi
 # This must be called from within the src/ai/api directory.
 
 if [ -z "$1" ]; then
+  # sai external bindings
+	for f in `ls ../../saiext/*/api/*.hpp`; do
+		${AWK} -f squirrel_export.awk ${f} > ${f}.tmp
+		if ! [ -f "${f}.sq" ] || [ -n "`diff -I '$Id' --strip-trailing-cr ${f}.tmp ${f}.sq 2> /dev/null || echo boo`" ]; then
+			mv ${f}.tmp ${f}.sq
+			echo "Updated: ${f}.sq"
+			svn add ${f}.sq > /dev/null 2>&1
+			svn propset svn:eol-style native ${f}.sq > /dev/null 2>&1
+			svn propset svn:keywords Id ${f}.sq > /dev/null 2>&1
+		else
+			rm -f ${f}.tmp
+		fi
+	done
+
 	for f in `ls ../../sai/api/*.hpp`; do
 		case "${f}" in
 			# these files should not be changed by this script

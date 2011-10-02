@@ -87,7 +87,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcares.lib"
+				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcares.lib sqlite3.lib"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				IgnoreDefaultLibraryNames=""
@@ -184,7 +184,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcaresd.lib"
+				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcaresd.lib sqlite3.lib"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -292,7 +292,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcares.lib"
+				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcares.lib sqlite3.lib"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				IgnoreDefaultLibraryNames=""
@@ -392,7 +392,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcaresd.lib"
+				AdditionalDependencies="winmm.lib ws2_32.lib libpng.lib zlibstat.lib lzo2.lib liblzma.lib libfreetype2.lib icuuc.lib icuin.lib icudt.lib libcaresd.lib sqlite3.lib"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -3886,6 +3886,10 @@
 				RelativePath=".\..\src\sai\api\sai_town.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_object.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="SAI API Implementation"
@@ -3928,6 +3932,50 @@
 			</File>
 			<File
 				RelativePath=".\..\src\sai\api\sai_town.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_object.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="SAI Sqlite3"
+			>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_command.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_command.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_reader.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_reader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_conn.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\api\sqlite_conn.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\sqlite_library.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\sqlite_library.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\saiext\sqlite3\sqlite3_import.h"
 				>
 			</File>
 		</Filter>

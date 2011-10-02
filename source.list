@@ -1034,6 +1034,7 @@ sai/api/sai_server.hpp
 sai/api/sai_sign.hpp
 sai/api/sai_tile.hpp
 sai/api/sai_town.hpp
+sai/api/sai_object.hpp
 
 # SAI API Implementation
 sai/api/sai_client.cpp
@@ -1046,3 +1047,15 @@ sai/api/sai_server.cpp
 sai/api/sai_sign.cpp
 sai/api/sai_tile.cpp
 sai/api/sai_town.cpp
+sai/api/sai_object.cpp
+
+# SAI Sqlite3
+saiext/sqlite3/api/sqlite_command.hpp
+saiext/sqlite3/api/sqlite_command.cpp
+saiext/sqlite3/api/sqlite_reader.hpp
+saiext/sqlite3/api/sqlite_reader.cpp
+saiext/sqlite3/api/sqlite_conn.cpp
+saiext/sqlite3/api/sqlite_conn.hpp
+saiext/sqlite3/sqlite_library.cpp
+saiext/sqlite3/sqlite_library.hpp
+saiext/sqlite3/sqlite3_import.h

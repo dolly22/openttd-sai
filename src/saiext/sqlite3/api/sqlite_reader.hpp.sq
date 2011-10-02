@@ -1,0 +1,41 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sqlite_reader.hpp"
+
+namespace SQConvert {
+	/* Allow SqliteReader to be used as Squirrel parameter */
+	template <> SqliteReader *GetParam(ForceType<SqliteReader *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SqliteReader *)instance; }
+	template <> SqliteReader &GetParam(ForceType<SqliteReader &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SqliteReader *)instance; }
+	template <> const SqliteReader *GetParam(ForceType<const SqliteReader *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SqliteReader *)instance; }
+	template <> const SqliteReader &GetParam(ForceType<const SqliteReader &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SqliteReader *)instance; }
+	template <> int Return<SqliteReader *>(HSQUIRRELVM vm, SqliteReader *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SqliteReader", res, NULL, DefSQDestructorCallback<SqliteReader>); return 1; }
+} // namespace SQConvert
+
+void SQSqliteReader_Register(Squirrel *engine)
+{
+	DefSQClass <SqliteReader> SQSqliteReader("SqliteReader");
+	SQSqliteReader.PreRegister(engine);
+	SQSqliteReader.AddConstructor<void (SqliteReader::*)(SqliteCommand *cmd), 2>(engine, "xx");
+
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::Close,         "Close",         1, "x");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::Read,          "Read",          1, "x");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetInt,        "GetInt",        2, "xi");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetIntName,    "GetIntName",    2, "x.");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetDouble,     "GetDouble",     2, "xi");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetDoubleName, "GetDoubleName", 2, "x.");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetString,     "GetString",     2, "xi");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetStringName, "GetStringName", 2, "x.");
+	SQSqliteReader.DefSQMethod(engine, &SqliteReader::GetIndex,      "GetIndex",      2, "x.");
+	SQSqliteReader.DefSQAdvancedMethod(engine, &SqliteReader::_get,  "_get");
+
+	SQSqliteReader.PostRegister(engine);
+}

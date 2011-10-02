@@ -213,7 +213,7 @@ BEGIN {
 	print "void SQ" cls "_Register(Squirrel *engine)"
 	print "{"
 	print "	DefSQClass <" cls "> SQ" cls "(\"" cls "\");"
-	if (super_cls == "AIObject" || super_cls == "AIAbstractList::Valuator" || super_cls == "SimpleCountedObject") {
+	if (super_cls == "AIObject" || super_cls == "AIAbstractList::Valuator" || super_cls == "SimpleCountedObject" || super_cls == "SAIObject") {
 		print "	SQ" cls ".PreRegister(engine);"
 	} else {
 		print "	SQ" cls ".PreRegister(engine, \"" super_cls "\");"
@@ -366,7 +366,13 @@ BEGIN {
 	}
 	gsub("virtual", "", $0)
 	gsub("static", "", $0)
-	gsub("const", "", $0)
+
+	cls_name = $1
+	gsub("\\(.*", "", cls_name)
+	if (cls_name != cls) {
+    gsub("const", "", $0)
+	}  
+  	
 	gsub("{.*", "", $0)
 	param_s = $0
 	gsub("\\*", "", $0)

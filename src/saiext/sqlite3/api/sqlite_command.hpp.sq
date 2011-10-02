@@ -1,0 +1,47 @@
+/* $Id$ */
+
+/*
+ * This file is part of OpenTTD.
+ * OpenTTD is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+ * OpenTTD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with OpenTTD. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* THIS FILE IS AUTO-GENERATED; PLEASE DO NOT ALTER MANUALLY */
+
+#include "sqlite_command.hpp"
+
+namespace SQConvert {
+	/* Allow SqliteCommand to be used as Squirrel parameter */
+	template <> SqliteCommand *GetParam(ForceType<SqliteCommand *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SqliteCommand *)instance; }
+	template <> SqliteCommand &GetParam(ForceType<SqliteCommand &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SqliteCommand *)instance; }
+	template <> const SqliteCommand *GetParam(ForceType<const SqliteCommand *>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return  (SqliteCommand *)instance; }
+	template <> const SqliteCommand &GetParam(ForceType<const SqliteCommand &>, HSQUIRRELVM vm, int index, SQAutoFreePointers *ptr) { SQUserPointer instance; sq_getinstanceup(vm, index, &instance, 0); return *(SqliteCommand *)instance; }
+	template <> int Return<SqliteCommand *>(HSQUIRRELVM vm, SqliteCommand *res) { if (res == NULL) { sq_pushnull(vm); return 1; } res->AddRef(); Squirrel::CreateClassInstanceVM(vm, "SqliteCommand", res, NULL, DefSQDestructorCallback<SqliteCommand>); return 1; }
+} // namespace SQConvert
+
+void SQSqliteCommand_Register(Squirrel *engine)
+{
+	DefSQClass <SqliteCommand> SQSqliteCommand("SqliteCommand");
+	SQSqliteCommand.PreRegister(engine);
+	SQSqliteCommand.AddConstructor<void (SqliteCommand::*)(class SqliteConn* conn, const char* sql), 3>(engine, "xxx");
+
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::Reset,           "Reset",           1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ClearBindings,   "ClearBindings",   1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::Finalize,        "Finalize",        1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindInt,         "BindInt",         3, "xii");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindIntName,     "BindIntName",     3, "x.i");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindDouble,      "BindDouble",      3, "xii");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindDoubleName,  "BindDoubleName",  3, "x.i");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindNull,        "BindNull",        2, "xi");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindNullName,    "BindNullName",    2, "x.");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindString,      "BindString",      3, "xi.");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::BindStringName,  "BindStringName",  3, "x..");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ExecuteNonQuery, "ExecuteNonQuery", 1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ExecuteInt,      "ExecuteInt",      1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ExecuteString,   "ExecuteString",   1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ExecuteDouble,   "ExecuteDouble",   1, "x");
+	SQSqliteCommand.DefSQMethod(engine, &SqliteCommand::ExecuteReader,   "ExecuteReader",   1, "x");
+
+	SQSqliteCommand.PostRegister(engine);
+}
