@@ -43,6 +43,7 @@
 #endif /* ENABLE_NETWORK */
 
 #include "sai/sai.hpp"
+#include "irc_interface.hpp"
 
 /* scriptfile handling */
 static bool _script_running; ///< Script is running (used to abort execution when #ConReturn is encountered).
@@ -1860,6 +1861,19 @@ DEF_CONSOLE_CMD(ConReloadSAI)
 	return true;
 }
 
+DEF_CONSOLE_CMD(ConReconnectIRC)
+{
+	if (_networking && !_network_server) {
+		IConsoleWarning("Only the server can reconnect IRC link.");
+		return true;
+	}
+
+	IConsolePrint(CC_DEFAULT, "IRC reconnecting.");
+	IRCInterface::Terminate();
+
+	return true;
+}
+
 DEF_CONSOLE_CMD(ConNewGRFReload)
 {
 	if (argc == 0) {
@@ -2010,6 +2024,7 @@ void IConsoleStdLibRegister()
 
 	// Server automation hoooks
 	IConsoleCmdRegister("reload_sai",		ConReloadSAI);
+	IConsoleCmdRegister("irc_reconnect",	ConReconnectIRC, ConHookServerOnly);
 #endif /* ENABLE_NETWORK */
 
 	/* debugging stuff */

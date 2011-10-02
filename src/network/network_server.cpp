@@ -37,6 +37,7 @@
 
 #include "../sai/sai.hpp"
 #include "network_checks.h"
+#include "../irc_interface.hpp"
 
 /* This file handles all the server-commands */
 
@@ -1377,6 +1378,11 @@ DEF_GAME_RECEIVE_COMMAND(Server, PACKET_CLIENT_CHAT)
 			if (!NetworkHandleClientCommand(ci->client_id, msg))
 			{
 				NetworkServerSendChat(action, desttype, dest, msg, this->client_id, data);
+
+				/* handle irc broadcast */
+				if (action == NETWORK_ACTION_CHAT) {
+					IRCInterface::SendMsgFmt("<%s> %s", ci->client_name, msg);
+				}
 			}
 			break;
 		default:
@@ -1779,6 +1785,9 @@ void NetworkServer_Tick(bool send_frame)
 	if (_frame_counter >= _last_dns_frame + 3) {
 		_last_dns_frame = _frame_counter;
 		ADNS_Process();
+
+		/* process messages by one every 3 frames...to avoid some flooding */
+		IRCInterface::ProcessQueuedMessage();
 	}
 
 	/* Now we are done with the frame, inform the clients that they can

@@ -1124,6 +1124,7 @@
     <ClInclude Include="..\src\sai\api\sai_tile.hpp" />
     <ClInclude Include="..\src\sai\api\sai_town.hpp" />
     <ClInclude Include="..\src\sai\api\sai_object.hpp" />
+    <ClInclude Include="..\src\sai\api\sai_irc.hpp" />
     <ClCompile Include="..\src\sai\api\sai_client.cpp" />
     <ClCompile Include="..\src\sai\api\sai_clientlist.cpp" />
     <ClCompile Include="..\src\sai\api\sai_company.cpp" />
@@ -1135,6 +1136,7 @@
     <ClCompile Include="..\src\sai\api\sai_tile.cpp" />
     <ClCompile Include="..\src\sai\api\sai_town.cpp" />
     <ClCompile Include="..\src\sai\api\sai_object.cpp" />
+    <ClCompile Include="..\src\sai\api\sai_irc.cpp" />
     <ClInclude Include="..\src\saiext\sqlite3\api\sqlite_command.hpp" />
     <ClCompile Include="..\src\saiext\sqlite3\api\sqlite_command.cpp" />
     <ClInclude Include="..\src\saiext\sqlite3\api\sqlite_reader.hpp" />
@@ -1144,6 +1146,10 @@
     <ClCompile Include="..\src\saiext\sqlite3\sqlite_library.cpp" />
     <ClInclude Include="..\src\saiext\sqlite3\sqlite_library.hpp" />
     <ClInclude Include="..\src\saiext\sqlite3\sqlite3_import.h" />
+    <ClCompile Include="..\src\IRC.cpp" />
+    <ClInclude Include="..\src\IRC.hpp" />
+    <ClInclude Include="..\src\irc_interface.hpp" />
+    <ClCompile Include="..\src\irc_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\media\openttd.ico" />

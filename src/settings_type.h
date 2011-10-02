@@ -188,6 +188,13 @@ struct NetworkSettings {
 	bool   no_http_content_downloads;                     ///< do not do content downloads over HTTP
 	char   sai_name[NETWORK_HOSTNAME_LENGTH];             ///< Name of Server AI to start
 	bool   only_small_towns;							  ///< generate only small towns to map...
+	char   irc_host[NETWORK_HOSTNAME_LENGTH];			  ///< IRC server
+	uint16 irc_port;                                      ///< IRC port
+	char   irc_nick[NETWORK_HOSTNAME_LENGTH];			  ///< IRC nick
+	char   irc_pass[NETWORK_HOSTNAME_LENGTH];			  ///< IRC pass
+	char   irc_oper_user[NETWORK_HOSTNAME_LENGTH];		  ///< IRC oper username
+	char   irc_oper_pass[NETWORK_HOSTNAME_LENGTH];		  ///< IRC oper password
+	char   irc_channel[NETWORK_HOSTNAME_LENGTH];		  ///< IRC channel
 #else /* ENABLE_NETWORK */
 #endif
 };

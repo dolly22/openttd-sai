@@ -3890,6 +3890,10 @@
 				RelativePath=".\..\src\sai\api\sai_object.hpp"
 				>
 			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_irc.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="SAI API Implementation"
@@ -3938,6 +3942,10 @@
 				RelativePath=".\..\src\sai\api\sai_object.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\..\src\sai\api\sai_irc.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="SAI Sqlite3"
@@ -3976,6 +3984,26 @@
 			</File>
 			<File
 				RelativePath=".\..\src\saiext\sqlite3\sqlite3_import.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="IRC Connector"
+			>
+			<File
+				RelativePath=".\..\src\IRC.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\IRC.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\irc_interface.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\..\src\irc_interface.cpp"
 				>
 			</File>
 		</Filter>

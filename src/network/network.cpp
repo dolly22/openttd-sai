@@ -47,6 +47,7 @@ bool _ddc_fastforward = true;
 #include "../genworld.h"
 
 #include "../sai/sai.hpp"
+#include "../irc_interface.hpp"
 assert_compile(NetworkClientInfoPool::MAX_SIZE == NetworkClientSocketPool::MAX_SIZE);
 
 NetworkClientInfoPool _networkclientinfo_pool("NetworkClientInfo");
@@ -270,6 +271,12 @@ void NetworkTextMessage(NetworkAction action, TextColour colour, bool self_send,
 	DEBUG(desync, 1, "msg: %08x; %02x; %s", _date, _date_fract, message);
 	IConsolePrintF(colour, "%s", message);
 	NetworkAddChatMessage((TextColour)colour, _settings_client.gui.network_chat_timeout, "%s", message);
+
+	/* explicit irc notifications for some message types */
+	if (action == NETWORK_ACTION_COMPANY_SPECTATOR || action == NETWORK_ACTION_COMPANY_JOIN || action == NETWORK_ACTION_COMPANY_NEW)
+	{
+		IRCInterface::SendNotice(message);
+	}
 }
 
 /* Calculate the frame-lag of a client */

@@ -27,6 +27,7 @@
 #include "../saveload/saveload.h"
 #include "dedicated_v.h"
 #include "../sai/sai.hpp"
+#include "../irc_interface.hpp"
 
 #ifdef BEOS_NET_SERVER
 #include <net/socket.h>
@@ -270,6 +271,9 @@ void VideoDriver_Dedicated::MainLoop()
 	// Async dns resolver initialize
 	ADNS_Init();
 
+	// Intialize irc game client
+	IRCInterface::Initialize();
+
 	/* Load the dedicated server stuff */
 	_is_network_server = true;
 	_network_dedicated = true;
@@ -329,6 +333,9 @@ void VideoDriver_Dedicated::MainLoop()
 
 	// close async DNS resolver
 	ADNS_Close();
+
+	// terminate IRC client
+	IRCInterface::Terminate();
 }
 
 #endif /* ENABLE_NETWORK */

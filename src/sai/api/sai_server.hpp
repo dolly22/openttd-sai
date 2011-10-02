@@ -27,6 +27,11 @@ public:
 	static void Say(const char* msg);
 
 	/*
+	** Say to all and possibly to irc
+	*/
+	static void SayEx(bool notice_irc, const char* msg);
+
+	/*
 	** Say to client by index
 	*/
 	static void SayClient(SAIClient::ClientID client, const char* msg);

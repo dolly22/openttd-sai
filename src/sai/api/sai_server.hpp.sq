@@ -37,6 +37,7 @@ void SQSAIServer_Register(Squirrel *engine)
 	SQSAIServer.DefSQConst(engine, SAIServer::OTHER,             "OTHER");
 
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::Say,                      "Say",                      2, "..");
+	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayEx,                    "SayEx",                    3, ".b.");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayClient,                "SayClient",                3, ".i.");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::SayCompany,               "SayCompany",               3, ".i.");
 	SQSAIServer.DefSQStaticMethod(engine, &SAIServer::ConsoleCmd,               "ConsoleCmd",               2, "..");

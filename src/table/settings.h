@@ -678,6 +678,13 @@ const SettingDesc _settings[] = {
 	 SDTC_BOOL(network.no_http_content_downloads,        S,  0, false,                        STR_NULL,                                       NULL),
 	  SDTC_STR(network.sai_name,              SLE_STRB, S,  0,    "",                         STR_NULL,                                       NULL),
 	 SDTC_BOOL(network.only_small_towns,                 S, NO, false,                        STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_host,              SLE_STRB, S,  0,	  "",                   STR_NULL,                                       NULL),
+	  SDTC_VAR(network.irc_port,            SLE_UINT16, S,  0,   6667,     0,  UINT16_MAX, 0, STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_nick,              SLE_STRB, S,  0, NULL,						  STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_pass,              SLE_STRB, S,  0, NULL,						  STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_oper_user,            SLE_STRB, S,  0, NULL,						  STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_oper_pass,            SLE_STRB, S,  0, NULL,						  STR_NULL,                                       NULL),
+	  SDTC_STR(network.irc_channel,             SLE_STRB, S,  0, NULL,						  STR_NULL,                                       NULL),
 #endif /* ENABLE_NETWORK */
 
 	/*

@@ -13,6 +13,7 @@
 #include "../../command_type.h"
 #include "../../command_func.h"
 #include "../sai.hpp"
+#include "../../irc_interface.hpp"
 
 extern Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMPANY);
 
@@ -20,6 +21,15 @@ extern Company *DoStartupNewCompany(bool is_ai, CompanyID company = INVALID_COMP
 {
 	if (!StrEmpty(msg))
 		NetworkServerSendChat(NETWORK_ACTION_CHAT, DESTTYPE_BROADCAST, NULL, msg, CLIENT_ID_SERVER, NULL);
+}
+
+/* static */ void SAIServer::SayEx(bool notice_irc, const char* msg)
+{
+	if (!StrEmpty(msg))
+		NetworkServerSendChat(NETWORK_ACTION_CHAT, DESTTYPE_BROADCAST, NULL, msg, CLIENT_ID_SERVER, NULL);
+
+	if (notice_irc)
+		IRCInterface::SendNotice(msg);
 }
 
 /* static */ void SAIServer::SayClient(SAIClient::ClientID client, const char* msg)
