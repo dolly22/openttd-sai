@@ -98,27 +98,26 @@ void ADNS_Process()
 
 void resolve_callback(void *arg, int status, int timeouts, struct hostent *hostent)
 {
-	dns_cache_entry *cache_entry;
-	
-	if (status != ARES_SUCCESS)
-    {
-		DEBUG(net, 8, "[dns] %d result error: %s", _frame_counter, ares_strerror(status));
-		cache_entry->resolved = false;
-    }
-	else
-	{	
-		uint32 client_ip = (uint32)arg;
+	dns_cache_entry *cache_entry;	
+	uint32 client_ip = (uint32)arg;
 
-		cache_entry = _dns_resolve_cache->fetch_ptr(client_ip, false);
-		if (cache_entry != NULL)
+	cache_entry = _dns_resolve_cache->fetch_ptr(client_ip, false);
+	if (cache_entry != NULL)
+	{
+		if (status != ARES_SUCCESS)
 		{
+			DEBUG(net, 8, "[dns] %d result error: %s", _frame_counter, ares_strerror(status));
+			cache_entry->resolved = false;
+		}
+		else
+		{	
 			cache_entry->resolved = true;
 			strncpy_s(cache_entry->host_name, hostent->h_name, NETWORK_HOSTNAME_LENGTH - 1);
 			cache_entry->host_name[NETWORK_HOSTNAME_LENGTH - 1] = '\0';
 
 			DEBUG(net, 2, "[dns] %d resolved %s to %s", _frame_counter, inet_ntoa(*(struct in_addr *)&client_ip), hostent->h_name);
-		}
-	}	
+		}	
+	}
 }
 
 
