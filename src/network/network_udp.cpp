@@ -118,10 +118,6 @@ DEF_UDP_RECEIVE_COMMAND(Server, PACKET_UDP_CLIENT_FIND_SERVER)
 	strecpy(ngi.server_name, _settings_client.network.server_name, lastof(ngi.server_name));
 	strecpy(ngi.server_revision, _openttd_revision, lastof(ngi.server_revision));
 
-	// prepend server name with single space (to be first in lists :)))
-	ngi.server_name[0] = ' ';
-	strecpy(&ngi.server_name[1], _settings_client.network.server_name, lastof(ngi.server_name));
-
 	Packet packet(PACKET_UDP_SERVER_RESPONSE);
 	this->SendNetworkGameInfo(&packet, &ngi);
 
